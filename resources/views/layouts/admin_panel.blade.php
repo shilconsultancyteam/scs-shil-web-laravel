@@ -125,7 +125,8 @@
                         <i class="fas fa-tachometer-alt w-6 text-center mr-3"></i>
                         <span>Dashboard</span>
                     </a>
-                    <a href="#" class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('pages.*') ? 'active' : '' }}">
+                    <a href="#"
+                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('pages.*') ? 'active' : '' }}">
                         <i class="fas fa-file-alt w-6 text-center mr-3"></i>
                         <span>Pages</span>
                     </a>
@@ -149,15 +150,44 @@
                             </a>
                         @endif
                     @endauth
-                    <a href="#" class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('sitemap.*') ? 'active' : '' }}">
+                    <a href="#"
+                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('sitemap.*') ? 'active' : '' }}">
                         <i class="fas fa-sitemap w-6 text-center mr-3"></i>
                         <span>Sitemap</span>
                     </a>
-                    <a href="#" class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('seo.*') ? 'active' : '' }}">
+                  <!-- Jobs Appointment with Dropdown -->
+            <div class="relative">
+                <button onclick="toggleJobsDropdown()" 
+                        class="sidebar-link flex items-center justify-between w-full px-4 py-3 rounded-lg {{ request()->routeIs('dashboard.jobs.*') || request()->routeIs('dashboard.applicants.*') ? 'active' : '' }}">
+                    <div class="flex items-center gap-{-20px}">
+                        <i class="fas fa-briefcase w-6 text-center mr-3"></i>
+                        <span>Jobs Appointment</span>
+                    </div>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200" id="jobs-chevron"></i>
+                </button>
+                
+                <!-- Dropdown Submenu -->
+                <div id="jobs-dropdown" class="ml-6 mt-1 space-y-1 hidden">
+                    <a href="{{ route('dashboard.jobs.index') }}"
+                       class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.jobs.*') ? 'active' : '' }}">
+                        <i class="fas fa-list-alt w-4 text-center mr-3"></i>
+                        <span>Job Circular</span>
+                    </a>
+                    <a href="#"
+                       class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.applicants.*') ? 'active' : '' }}">
+                        <i class="fas fa-users w-4 text-center mr-3"></i>
+                        <span>Job Applicants</span>
+                    </a>
+                </div>
+            </div>
+
+                    <a href="#"
+                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('seo.*') ? 'active' : '' }}">
                         <i class="fas fa-chart-line w-6 text-center mr-3"></i>
                         <span>SEO</span>
                     </a>
-                    <a href="#" class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('settings.*') ? 'active' : '' }}">
+                    <a href="#"
+                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('settings.*') ? 'active' : '' }}">
                         <i class="fas fa-cogs w-6 text-center mr-3"></i>
                         <span>Global Settings</span>
                     </a>
@@ -236,7 +266,45 @@
                 }
             }
         }
+       
+    function toggleJobsDropdown() {
+        const dropdown = document.getElementById('jobs-dropdown');
+        const chevron = document.getElementById('jobs-chevron');
+        
+        dropdown.classList.toggle('hidden');
+        chevron.classList.toggle('rotate-180');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('jobs-dropdown');
+        const jobsButton = document.querySelector('[onclick="toggleJobsDropdown()"]');
+        
+        if (!jobsButton.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.classList.add('hidden');
+            document.getElementById('jobs-chevron').classList.remove('rotate-180');
+        }
+    });
+
     </script>
+    <style>
+        .sidebar-link {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background-color: var(--dark-3);
+    color: var(--light);
+    border-left-color: var(--primary);
+}
+
+/* Smooth rotation for chevron */
+.fa-chevron-down {
+    transition: transform 0.3s ease;
+}
+    </style>
 </body>
 
 </html>

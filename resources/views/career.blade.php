@@ -71,52 +71,36 @@
         </div>
     </section>
 
-    <section id="open-positions" class="py-20 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Current <span class="text-white">Openings</span></h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Find your next career adventure. We are looking for talented individuals to join our team in Chittagong.</p>
-            </div>
-
-            <div class="space-y-6 max-w-4xl mx-auto">
-                <div class="service-card rounded-xl p-6 md:p-8 transform transition-all duration-500 hover:glow flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1 text-white">Senior Frontend Developer (React)</h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-400">
-                            <span><i class="fas fa-map-marker-alt mr-2"></i>Chittagong, BD</span>
-                            <span><i class="fas fa-briefcase mr-2"></i>Full-time</span>
-                            <span><i class="fas fa-code-branch mr-2"></i>Engineering</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn-glow mt-4 md:mt-0 px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 whitespace-nowrap">Apply Now</a>
-                </div>
-
-                <div class="service-card rounded-xl p-6 md:p-8 transform transition-all duration-500 hover:glow flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1 text-white">Digital Marketing Specialist (SEO/SMM)</h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-400">
-                            <span><i class="fas fa-map-marker-alt mr-2"></i>Chittagong, BD</span>
-                            <span><i class="fas fa-briefcase mr-2"></i>Full-time</span>
-                            <span><i class="fas fa-bullhorn mr-2"></i>Marketing</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn-glow mt-4 md:mt-0 px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 whitespace-nowrap">Apply Now</a>
-                </div>
-
-                <div class="service-card rounded-xl p-6 md:p-8 transform transition-all duration-500 hover:glow flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-1 text-white">UI/UX Designer</h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-400">
-                            <span><i class="fas fa-map-marker-alt mr-2"></i>Remote / Chittagong</span>
-                            <span><i class="fas fa-briefcase mr-2"></i>Contract</span>
-                            <span><i class="fas fa-palette mr-2"></i>Design</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn-glow mt-4 md:mt-0 px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 whitespace-nowrap">Apply Now</a>
-                </div>
-            </div>
+  <section id="open-positions" class="py-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Current <span class="text-white">Openings</span></h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">Find your next career adventure. We are looking for talented individuals to join our team in Chittagong.</p>
         </div>
-    </section>
+
+        <div class="space-y-6 max-w-4xl mx-auto">
+
+            @forelse ($jobs as $job)
+                <div class="service-card rounded-xl p-6 md:p-8 transform transition-all duration-500 hover:glow flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1 text-white">{{ $job->post_name }}</h3>
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-400">
+                            <span><i class="fas fa-map-marker-alt mr-2"></i>{{ $job->location }}</span>
+                            <span><i class="fas fa-briefcase mr-2"></i>{{ $job->time }}</span>
+                            <span><i class="fas fa-code-branch mr-2"></i>{{ $job->section }}</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn-glow mt-4 md:mt-0 px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 whitespace-nowrap">Apply Now</a>
+                </div>
+            @empty
+                <div class="service-card rounded-xl p-6 md:p-8 text-center">
+                    <p class="text-gray-400 text-lg">There are no open positions at the moment. Please check back later or submit your CV below!</p>
+                </div>
+            @endforelse
+
+        </div>
+    </div>
+</section>
     
      <section id="contact" class="py-20 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

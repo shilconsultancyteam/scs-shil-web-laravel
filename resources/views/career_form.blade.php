@@ -12,7 +12,7 @@
 
     @include('partials.header')
 
-    <section id="application-form" class="py-20 relative overflow-hidden">
+    <section id="application-form" class="py-32 relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="service-card rounded-xl p-8 md:p-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text text-center">Application for {{ $job->post_name }}</h2>

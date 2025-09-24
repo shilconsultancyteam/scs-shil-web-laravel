@@ -90,7 +90,7 @@
                             <span><i class="fas fa-code-branch mr-2"></i>{{ $job->section }}</span>
                         </div>
                     </div>
-                    <a href="#contact" class="btn-glow mt-4 md:mt-0 px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 whitespace-nowrap">Apply Now</a>
+                   <a href="{{ route('careers.show.job', ['job_id' => $job->id]) }}" class="btn-glow mt-4 md:mt-0 px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 whitespace-nowrap">View Now</a>
                 </div>
             @empty
                 <div class="service-card rounded-xl p-6 md:p-8 text-center">

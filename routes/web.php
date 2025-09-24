@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
@@ -57,10 +56,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Access Control & User Management
-    // (Your existing user management routes go here...)
     Route::get('/access_control', fn() => view('dashboard.access_control', ['users' => User::all()]))->name('access_control');
     Route::post('/access_control/store', function (Request $request) {
-        // ... (validation and user creation logic)
         $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users', 'password' => 'required|string|min:8', 'role' => 'required|in:admin,manager,developer', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048']);
         $imagePath = $request->hasFile('image') ? $request->file('image')->store('users', 'public') : null;
         User::create($request->only('name', 'email', 'role') + ['password' => Hash::make($request->password), 'image' => $imagePath]);
@@ -73,7 +70,6 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         return redirect()->route('access_control')->with('success', 'User deleted successfully!');
     })->name('users.destroy');
     Route::put('/users/{user}', function (Request $request, User $user) {
-        // ... (validation and user update logic)
         $validated = $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id, 'password' => 'nullable|string|min:8', 'role' => 'required|in:admin,manager,developer', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048']);
         if ($request->hasFile('image')) {
             if ($user->image) Storage::disk('public')->delete($user->image);
@@ -83,25 +79,31 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         $user->update($validated);
         return redirect()->route('access_control')->with('success', 'User updated successfully!');
     })->name('users.update');
-    // End User Management
 
     // Blog Routes
     Route::resource('blogs', AdminBlogController::class)->names('dashboard.blogs');
+    Route::post('/blogs/upload', [AdminBlogController::class, 'upload'])->name('dashboard.blogs.upload');
 
-    // **THIS IS THE CRITICAL FIX**
     // Job Routes
     Route::resource('jobs', JobController::class)->names('dashboard.jobs');
+
+    // Job Applicants Routes
+    Route::get('/applicants', [CareerController::class, 'showApplicants'])->name('dashboard.applicants');
 });
 
-// Other Routes
+// Other Public-Facing Routes
 Route::get('/dashboard/unauthorized-access', fn() => view('dashboard.unauthorized'))->name('unauthorized.access')->middleware('auth');
-Route::post('/dashboard/blogs/upload', [AdminBlogController::class, 'upload'])->name('dashboard.blogs.upload');
+Route::post('/send-message', [ContactController::class, 'send'])->name('send.message');
 
-// **THIS IS THE SECOND CRITICAL FIX**
-Route::get('/careers', [CareerController::class, 'index'])->name('careers');
+// Career Routes
+Route::prefix('careers')->group(function () {
+    Route::get('/', [CareerController::class, 'index'])->name('careers');
+    Route::get('/{job_id}/apply', [CareerController::class, 'showApplicationForm'])->name('careers.apply');
+    Route::get('/jobs/{job_id}', [CareerController::class, 'showJobDescription'])->name('careers.show.job');
+    Route::post('/submit', [CareerController::class, 'submitApplication'])->name('careers.submit');
+});
 
+// Policies
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 Route::view('/terms-of-service', 'terms-of-service')->name('terms.of.service');
 Route::view('/cookie-policy', 'cookie-policy')->name('cookie.policy');
-Route::post('/send-message', [ContactController::class, 'send'])->name('send.message');
-

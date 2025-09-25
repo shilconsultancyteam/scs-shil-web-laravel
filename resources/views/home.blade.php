@@ -669,33 +669,46 @@
         </div>
     </section>
 
-    {{-- logo testimonial section --}}
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1"></div>
-            <div class="swiper-slide"><img src="{{ asset('images/avetta.png') }}" alt="Logo 2"></div>
-            <div class="swiper-slide"><img src="{{ asset('images/browz.png') }}" alt="Logo 3"></div>
-            <div class="swiper-slide"><img src="{{ asset('images/canqualify.png') }}" alt="Logo 4"></div>
-            <div class="swiper-slide"><img src="{{ asset('images/imperial.png') }}" alt="Logo 5"></div>
-            <div class="swiper-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6"></div>
+                                               {{-- logo testimonial section --}}
+
+
+
+
+    <section class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Trusted by <span
+                        class="text-white"> Leading Brands</span></h2>
+                {{-- <p class="text-xl text-gray-300 max-w-3xl mx-auto">What our clients say about working with us</p> --}}
+            </div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1"></div>
+                    <div class="swiper-slide"><img src="{{ asset('images/avetta.png') }}" alt="Logo 2"></div>
+                    <div class="swiper-slide"><img src="{{ asset('images/browz.png') }}" alt="Logo 3"></div>
+                    <div class="swiper-slide"><img src="{{ asset('images/canqualify.png') }}" alt="Logo 4"></div>
+                    <div class="swiper-slide"><img src="{{ asset('images/imperial.png') }}" alt="Logo 5"></div>
+                    <div class="swiper-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6"></div>
+                </div>
+            </div>
         </div>
-    </div>
-   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 5,        // show 5 logos
-      centeredSlides: true,    // keep centered
-      loop: true,              // infinite
-      speed: 6000,             // smooth speed
-      autoplay: {
-        delay: 0,              // no delay
-        disableOnInteraction: false,
-      },
-      freeMode: true,          // continuous scroll
-      freeModeMomentum: false, 
-      allowTouchMove: false,   // disable manual dragging
-    });
-  </script> 
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 5, // show 5 logos
+            centeredSlides: true, // keep centered
+            loop: true, // infinite
+            speed: 6000, // smooth speed
+            autoplay: {
+                delay: 0, // no delay
+                disableOnInteraction: false,
+            },
+            freeMode: true, // continuous scroll
+            freeModeMomentum: false,
+            allowTouchMove: false, // disable manual dragging
+        });
+    </script>
 
 
 
@@ -747,7 +760,7 @@
                         </div>
                         <div class="flex items-center">
                             <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
-                               <i class="fas fa-landmark text-3xl gradient-text"></i>
+                                <i class="fas fa-landmark text-3xl gradient-text"></i>
 
                             </div>
                             <div>

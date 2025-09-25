@@ -1,10 +1,12 @@
-        // Sample posts data
+       import post_1 from '../../public/images/1.webp';
+       
+       // Sample posts data
         let posts = [
             {
                 id: 1,
                 username: "Shil Consultancy",
                 userImage: "/Media/favicon/ms-icon-310x310.png",
-                image: "Media/1.jpg",
+                image: post_1,
                 caption: "Tired of flat lines? 📈 We turn aspirations into upward trends. Our data-driven strategies are designed to deliver real, measurable growth for your brand on social media. Let's chart your success together. #SocialGrowth #DigitalMarketing #PerformanceDriven",
                 likes: 2431,
                 comments: 124,

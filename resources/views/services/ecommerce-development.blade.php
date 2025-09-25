@@ -1,13 +1,296 @@
-@extends('layouts.template')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecommerce Development in Bangladesh | Grow Your Business Online</title>
+<meta name="description" content="Top social media marketing agency in Bangladesh. We boost engagement, increase followers, and drive sales through Facebook, Instagram, LinkedIn marketing. Get a free strategy session today.">
+<meta name="keywords" content="Ecommerce Development in Bangladesh, SMM services, Facebook marketing Bangladesh, Instagram ads, LinkedIn marketing, social media management, content marketing Bangladesh">
 
-@section('title', 'Ecommerce Devlopment')
+<!-- Canonical URL -->
+<link rel="canonical" href="https://www.shilconsultancy.com/social-media-marketing-bangladesh.html">
 
-@section('content')
-<!-- Breadcrumbs -->
-    <div class="container mx-auto px-4 py-3 text-sm text-white pt-24">
+<!-- Open Graph/Social Media Meta Tags -->
+<meta property="og:title" content="Social Media Marketing in Bangladesh | Grow Your Business Online">
+<meta property="og:description" content="Top social media marketing agency in Bangladesh. We boost engagement, increase followers, and drive sales through targeted social campaigns.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.shilconsultancy.com/social-media-marketing-bangladesh.html">
+<meta property="og:image" content="https://www.shilconsultancy.com/images/social-media-preview.jpg">
+<meta property="og:site_name" content="Shil Consultancy Services">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Social Media Marketing in Bangladesh | Grow Your Business Online">
+<meta name="twitter:description" content="Top social media marketing agency in Bangladesh. We boost engagement, increase followers, and drive sales through targeted social campaigns.">
+<meta name="twitter:image" content="https://www.shilconsultancy.com/images/social-media-preview.jpg">
+
+<!-- Schema Markup for Digital Marketing Service -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Shil Consultancy Services",
+  "image": "https://www.shilconsultancy.com/images/logo.jpg",
+  "@id": "https://www.shilconsultancy.com/social-media-marketing-bangladesh.html",
+  "url": "https://www.shilconsultancy.com/social-media-marketing-bangladesh.html",
+  "telephone": "+8801768013249",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Nasirabad",
+    "addressLocality": "Chittagong",
+    "postalCode": "4000",
+    "addressCountry": "BD"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 23.8103,
+    "longitude": 90.4125
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "serviceType": "Social Media Marketing",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Social Media Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Social Media Strategy Development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Content Creation & Management"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Paid Social Advertising"
+        }
+      }
+    ]
+  },
+  "sameAs": [
+    "https://www.facebook.com/shilconsultancyukltd",
+    "https://www.instagram.com/shilconsultancy/",
+    "https://x.com/shilconsultancy",
+    "https://www.linkedin.com/company/shilconsultancy/"
+  ]
+}
+</script>
+<!-- Favicon Section -->
+<link rel="icon" type="image/png" href="/Media/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/Media/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/Media/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/Media/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/Media/favicon/site.webmanifest" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Add your custom styles from the Shil Consultancy site */
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --accent: #ff7e5f;
+            --dark: #0f0e17;
+            --light: #fffffe;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 8s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 10px 0;
+            color: white;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        /* Ecommerce page specific styles */
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .product-gallery img {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .product-gallery img:hover {
+            opacity: 0.8;
+        }
+        .main-image {
+            height: 400px;
+            object-fit: cover;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+        }
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .sticky-add-to-cart {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 50;
+        }
+        .sticky-add-to-cart.visible {
+            transform: translateY(0);
+        }
+        .image-container {
+            position: relative;
+        }
+        .zoom-option {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .zoom-option i {
+            margin-right: 5px;
+            color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+   <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="{{url('/')}}" >
+                        <h1 class="text-2xl font-bold gradient-text">SHIL CONSULTANCY</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="{{ request()->is('/') ? '#services' : url('/') . '#services' }}" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="{{ request()->is('/') ? '#about' : url('/') . '#about' }}" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="{{ request()->is('/') ? '#work' : url('/') . '#work' }}" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Work</a>
+                        <a href="{{ request()->is('/') ? '#contact' : url('/') . '#contact' }}" class="nav-link text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+             <a href="{{ request()->is('/') ? '#home' : url('/') . '#home' }}" class="nav-link">Home</a>
+        <a href="{{ request()->is('/') ? '#services' : url('/') . '#services' }}" class="nav-link">Services</a>
+        <a href="{{ request()->is('/') ? '#about' : url('/') . '#about' }}" class="nav-link">About</a>
+        <a href="{{ request()->is('/') ? '#work' : url('/') . '#work' }}" class="nav-link">Work</a>
+        <a href="{{ request()->is('/') ? '#contact' : url('/') . '#contact' }}" class="nav-link">Contact</a>
+        </div>
+    </nav>
+    
+
+    <!-- Breadcrumbs -->
+    <div class="container mx-auto px-4 py-3 text-sm text-gray-600 pt-24">
         <a href="index.html" class="hover:text-indigo-600">Home</a> / 
         <a href="index.html#services" class="hover:text-indigo-600">Services</a> / 
-        <span class="text-gray-500">Ecommerce Development in Bangladesh</span>
+        <span class="text-gray-800">Ecommerce Development in Bangladesh</span>
     </div>
 
     <!-- Main Product Section -->
@@ -686,6 +969,7 @@
     </div>
 </div>
 </main>
+
 <!-- Sticky Add to Cart (Mobile) -->
 <div class="sticky-add-to-cart bg-white shadow-lg p-4 border-t border-gray-200">
     <div class="container mx-auto flex items-center justify-between">
@@ -701,5 +985,195 @@
         </button>
     </div>
 </div>
-   
-@endsection
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">SHIL CONSULTANCY</h3>
+                    <p class="text-gray-400">Innovative digital solutions for Bangladeshi businesses.</p>
+                    <p class="text-gray-400 mt-2"><i class="fas fa-map-marker-alt mr-2"></i> Chittagong, Bangladesh</p>
+                    <p class="text-gray-400 mt-1"><i class="fas fa-phone-alt mr-2"></i> +8801768013249</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://shilconsultancy.com/#services" class="text-gray-400 hover:text-white">Web Development</a></li>
+                        <li><a href="https://shilconsultancy.com/#services" class="text-gray-400 hover:text-white">E-Commerce</a></li>
+                        <li><a href="https://shilconsultancy.com/#services" class="text-gray-400 hover:text-white">Digital Marketing</a></li>
+                        <li><a href="https://shilconsultancy.com/#services" class="text-gray-400 hover:text-white">Content Creation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://shilconsultancy.com/#about" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="https://shilconsultancy.com/#work" class="text-gray-400 hover:text-white">Our Work</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Shil Consultancy Services. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/shilconsultancyukltd" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/shilconsultancy/" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/shilconsultancy" class="w-10 h-10 bg-gray-800 hover:grid-bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/shilconsultancy/" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-r from-cyan-400 to-pink-500 opacity-10 blur-3xl rotate"></div>
+    </footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/8801768013249" target="_blank" 
+   class="fixed bottom-[96px] right-8 w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 group z-50 animate-bounce">
+   <i class="fab fa-whatsapp text-2xl"></i>
+   <span class="absolute -top-10 -right-2 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md">
+       Chat with us
+   </span>
+</a>
+
+<!-- Back to Top Button -->
+<a href="#" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition duration-300 z-50">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // Change product image when thumbnail is clicked
+    function changeImage(element) {
+        const mainImage = document.getElementById('mainImage');
+        mainImage.src = element.src;
+        
+        // Remove border from all thumbnails
+        const thumbnails = document.querySelectorAll('.product-gallery img');
+        thumbnails.forEach(img => {
+            img.classList.remove('border-2', 'border-indigo-300');
+        });
+        
+        // Add border to clicked thumbnail
+        element.classList.add('border-2', 'border-indigo-300');
+    }
+    
+    // Tab functionality
+    function openTab(evt, tabName) {
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.classList.remove('border-indigo-500', 'text-indigo-600', 'bg-indigo-50');
+            button.classList.add('border-transparent', 'text-gray-500');
+        });
+        
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.remove('border-transparent', 'text-gray-500');
+        evt.currentTarget.classList.add('border-indigo-500', 'text-indigo-600', 'bg-indigo-50');
+    }
+    
+    // FAQ accordion
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('i');
+            
+            // Toggle answer visibility
+            answer.classList.toggle('hidden');
+            
+            // Rotate icon
+            icon.classList.toggle('rotate-180');
+        });
+    });
+    
+    // Quantity controls
+    function increaseQuantity() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        quantityInput.value = quantity + 1;
+    }
+    
+    function decreaseQuantity() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantityInput.value = quantity - 1;
+        }
+    }
+    
+    // Sticky add to cart for mobile
+    window.addEventListener('scroll', function() {
+        const stickyCart = document.querySelector('.sticky-add-to-cart');
+        if (window.innerWidth < 1024) { // Only for mobile
+            if (window.scrollY > 300) {
+                stickyCart.classList.add('visible');
+            } else {
+                stickyCart.classList.remove('visible');
+            }
+        }
+    });
+    
+    // Zoom image function
+    function zoomImage() {
+        const mainImage = document.getElementById('mainImage');
+        const currentSrc = mainImage.src;
+        
+        // Open the image in a new tab (simple zoom solution)
+        window.open(currentSrc, '_blank');
+    }
+</script>
+</body>
+</html>

@@ -4,16 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEO Services - Search Engine Experts</title>
-   
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      {{-- link --}}
-     @vite(['resources/css/search-engine-optimisation.css', 'resources/js/search-engine-optimisation.js'])
-          @vite(['resources/css/app.css', 'resources/js/app.js'])
-   
+    <style>
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #1a73e8 }
+        }
+        .typing-animation {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #1a73e8;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        .search-box {
+            box-shadow: 0 2px 5px 1px rgba(64,60,67,.16);
+        }
+        .search-box:focus-within {
+            box-shadow: 0 2px 8px 1px rgba(64,60,67,.24);
+        }
+        .result-card:hover {
+            box-shadow: 0 1px 6px rgba(32,33,36,.28);
+        }
+        .nav-item:hover {
+            color: #1a73e8;
+            border-bottom: 3px solid #1a73e8;
+        }
+        .nav-item.active {
+            color: #1a73e8;
+            border-bottom: 3px solid #1a73e8;
+        }
+        .pagination-btn:hover {
+            background-color: #f8f9fa;
+        }
+        @media (max-width: 640px) {
+            .search-container {
+                width: 90%;
+            }
+        }
+        section {
+            padding-top: 80px; 
+            margin-top: -80px;
+        }
+    </style>
 </head>
 <body class="bg-white min-h-screen font-sans">
     
-   
+    <nav class="fixed w-full z-50 bg-black bg-opacity-100 backdrop-filter backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="{{url('/')}}">
+                            <h1 class="text-2xl font-bold" style="color: #fff; font-family: 'Orbitron', sans-serif;">SHIL CONSULTANCY</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="https://shilconsultancy.com/#services" class="text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="https://shilconsultancy.com/#about" class="text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="https://shilconsultancy.com/#work" class="text-white px-3 py-2 rounded-md text-sm font-medium">Work</a>
+                        <a href="https://shilconsultancy.com/#contact" class="text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                 <a href="#home" class="text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                 <a href="#services" class="text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                 <a href="#about" class="text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                 <a href="#work" class="text-white block px-3 py-2 rounded-md text-base font-medium">Work</a>
+                 <a href="#contact" class="text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
     
     <header class="sticky top-0 bg-white shadow-sm z-10" style="padding-top: 80px;"> <div class="container mx-auto px-4 py-3">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -26,7 +104,7 @@
                 
                 <div class="search-container mx-auto md:mx-0 md:w-1/2 lg:w-2/5">
                     <div class="search-box flex items-center w-full rounded-full border border-gray-200 px-4 py-3 transition-all duration-200">
-                         <i class="fa-solid fa-magnifying-glass text-gray-400 mr-3"></i>
+                        <i class="fas fa-search text-gray-400 mr-3"></i>
                         <input type="text" placeholder="Search for SEO services..." class="w-full focus:outline-none text-gray-800" id="searchInput">
                         <div class="flex space-x-2">
                             <button class="text-gray-400 hover:text-gray-600">
@@ -173,8 +251,125 @@
         </section>
     </main>
 
-   @include('partials.footer')
+    <footer class="py-12 bg-black bg-opacity-100 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">SHIL CONSULTANCY</h3>
+                    <p class="text-gray-400">Innovative digital solutions for forward-thinking businesses.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Web Development</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">E-Commerce</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Digital Marketing</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Content Creation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#work" class="text-gray-400 hover:text-white">Our Work</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Shil Consultancy Services. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/shilconsultancyukltd" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/shilconsultancy/" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/shilconsultancy" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/shilconsultancy/" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-   
+
+    <script>
+        // --- SCRIPT FOR ORIGINAL SEO PAGE ---
+        const navLinks = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('main section'); 
+
+        function changeActiveLink() {
+            let index = sections.length;
+            while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+            navLinks.forEach((link) => link.classList.remove('active'));
+            if(navLinks[index]) {
+               navLinks[index].classList.add('active');
+            }
+        }
+        window.addEventListener('scroll', changeActiveLink);
+        changeActiveLink();
+
+        const searchInput = document.getElementById('searchInput');
+        const keywords = [
+            "best SEO agency in Chittagong",
+            "best SEO agency in Bangladesh", 
+            "best SEO agency near me",
+            "top SEO services in Chittagong"
+        ];
+        let currentKeyword = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const fullKeyword = keywords[currentKeyword];
+            
+            if (isDeleting) {
+                searchInput.placeholder = fullKeyword.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                searchInput.placeholder = fullKeyword.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === fullKeyword.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentKeyword = (currentKeyword + 1) % keywords.length;
+                setTimeout(type, 500);
+            } else {
+                const typingSpeed = isDeleting ? 100 : 150;
+                setTimeout(type, typingSpeed);
+            }
+        }
+        setTimeout(type, 1000);
+
+        // --- SCRIPT FOR NEWLY ADDED HEADER ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
 </body>
 </html>

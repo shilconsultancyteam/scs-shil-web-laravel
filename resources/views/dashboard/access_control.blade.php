@@ -29,7 +29,7 @@
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-400">Name</label>
                         <input type="text" name="name" id="name" required
-                            class="mt-1 block w-full rounded-md bg-dark-2 border-gray-600 text-light focus:ring-primary focus:border-primary">
+                            class="mt-1 block w-full rounded-md bg-dark-2 border-gray-600 text-black focus:ring-primary focus:border-primary">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
@@ -46,7 +46,7 @@
                     <div>
                         <label for="role" class="block text-sm font-medium text-gray-400">Role</label>
                         <select name="role" id="role" required
-                            class="mt-1 block w-full rounded-md bg-dark-2 border-gray-600 text-light focus:ring-primary focus:border-primary">
+                            class="mt-1 block w-full rounded-md bg-dark-2 border-gray-600 text-black focus:ring-primary focus:border-primary">
                             <option value="admin">Admin</option>
                             <option value="manager">Manager</option>
                             <option value="developer">Developer</option>

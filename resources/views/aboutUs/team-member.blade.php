@@ -93,7 +93,7 @@
                            <img src="https://placehold.co/64x64/6e45e2/ffffff?text=DG" alt="Photo of David Garcia" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
                            <div>
                                <h3 class="font-bold text-white">Ariful Islam Shawon</h3>
-                               <p class="text-sm text-gray-400">UI/UX Designer</p>
+                               <p class="text-sm text-gray-400">Graphics Designer</p>
                            </div>
                         </div>
                     </div>

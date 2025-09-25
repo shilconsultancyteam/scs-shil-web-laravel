@@ -234,29 +234,3 @@
   .swiper_work .swiper-slide { overflow: visible; }
 
 
-   /* logo slider */
-/* highlight middle logos, fade sides */
- .swiper {
-      width: 100%;
-      max-width: 1200px;
-    }
-
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.5s ease;
-      opacity: 0.2; /* default faded */
-    }
-
-    .swiper-slide img {
-      max-height: 80px;
-      object-fit: contain;
-    }
-
-    /* Highlight only the middle 3 logos */
-    .swiper-slide-prev,
-    .swiper-slide-active,
-    .swiper-slide-next {
-      opacity: 1 !important;
-    }

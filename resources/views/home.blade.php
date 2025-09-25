@@ -7,9 +7,9 @@
     <title>Shil Consultancy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </head>
 
@@ -19,7 +19,8 @@
     <!-- Include global header -->
     @include('partials.header')
 
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-12 md:pt-20">
+    <section id="home"
+        class="min-h-screen flex items-center justify-center relative overflow-hidden pt-12 md:pt-20">
         <div class="absolute top-1/4 left-1/4 w-40 h-40 rounded-full bg-purple-500 opacity-20 blur-3xl animate-pulse">
         </div>
         <div class="absolute bottom-1/4 right-1/4 w-40 h-40 rounded-full bg-cyan-400 opacity-20 blur-3xl animate-pulse">
@@ -44,7 +45,7 @@
                     <a href="#contact"
                         class="btn-glow px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300">Get
                         Started</a>
-                 
+
                 </div>
             </div>
             <div class="md:w-1/2 relative">
@@ -73,7 +74,7 @@
             </a>
         </div>
     </section>
-                                        {{-- services section --}}
+    {{-- services section --}}
 
     <section id="services" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -135,7 +136,8 @@
                         <!--    class="w-16 h-16  rounded-xl flex items-center justify-center mb-6">-->
                         <!--    <i class="fas fa-bullseye text-4xl gradient-text"></i>-->
                         <!--</div>-->
-                        <h3 class="text-2xl font-bold mb-4 group-hover:text-purple-400 transition-colors mt-10">Social Media
+                        <h3 class="text-2xl font-bold mb-4 group-hover:text-purple-400 transition-colors mt-10">Social
+                            Media
                             Marketing</h3>
                         <p class="text-gray-300 mb-6 group-hover:text-gray-100 transition-colors">Data-driven strategies
                             to increase your social media visibility, attract quality leads, and convert them into
@@ -220,10 +222,10 @@
         <div
             class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 opacity-10 blur-3xl rotate">
         </div>
-    </section> 
-             
-    
-                                              {{-- ABOUT SECTION --}}
+    </section>
+
+
+    {{-- ABOUT SECTION --}}
 
     <section id="about" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -257,8 +259,7 @@
 
                     <div class="grid grid-cols-2 gap-6 mb-8">
                         <div class="flex items-center">
-                            <div
-                                class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
+                            <div class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-rocket text-white text-3xl  gradient-text"></i>
                             </div>
                             <div>
@@ -267,8 +268,7 @@
                             </div>
                         </div>
                         <div class="flex items-center">
-                            <div
-                                class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
+                            <div class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-heart  text-3xl  gradient-text"></i>
                             </div>
                             <div>
@@ -277,8 +277,7 @@
                             </div>
                         </div>
                         <div class="flex items-center">
-                            <div
-                                class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-chart-line text-3xl  gradient-text"></i>
                             </div>
                             <div>
@@ -286,21 +285,22 @@
                                 <p class="text-gray-400 text-sm">Proven track record</p>
                             </div>
                         </div>
-                        
-                             <div class="flex items-center">
-                                <a href="{{route('aboutUs.team-member')}}">
-                            <div
-                                class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-users text-3xl  gradient-text"></i>
-                            </div>
-                            <div>
-                                <a href="{{route('aboutUs.team-member')}}"> <h4 class="text-xl font-bold text-white">Team</h4></a>
-                               
-                                <p class="text-gray-400 text-sm">Expert professionals</p>
-                            </div>
+
+                        <div class="flex items-center">
+                            <a href="{{ route('aboutUs.team-member') }}">
+                                <div class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-users text-3xl  gradient-text"></i>
+                                </div>
+                                <div>
+                                    <a href="{{ route('aboutUs.team-member') }}">
+                                        <h4 class="text-xl font-bold text-white">Team</h4>
+                                    </a>
+
+                                    <p class="text-gray-400 text-sm">Expert professionals</p>
+                                </div>
                         </div>
                         </a>
-                       
+
                     </div>
 
                     <a href="#contact"
@@ -315,7 +315,7 @@
         </div>
     </section>
 
-                                                   {{-- WORK SECTION  --}}
+    {{-- WORK SECTION  --}}
 
     <section id="work" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -329,206 +329,231 @@
 
             {{-- workcard slider --}}
             <!-- Swiper Container -->
-<div class=" swiper_work mb-16 overflow-visible">
-  <div class="swiper-wrapper">
-    
-    <!-- Slide 1 -->
-    <div class="swiper-slide">
-      <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-        <div class="relative h-64 overflow-hidden">
-          <div class="placeholder-img w-full h-full flex items-center justify-center">
-            <div>
-              <div class="text-4xl mb-4"><i class="fas fa-briefcase"></i></div>
-              <div>Corporate Website</div>
+            <div class=" swiper_work mb-16 overflow-visible">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-briefcase"></i></div>
+                                        <div>Corporate Website</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Sallow Trading</h3>
+                                    <p class="text-gray-300">75% increase in lead generation</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">WordPress</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">UI/UX</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-paint-brush"></i></div>
+                                        <div>Brand Campaign</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Suger Comb</h3>
+                                    <p class="text-gray-300">3M+ impressions</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Visual
+                                        Identity</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Content</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Influencers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-palette"></i></div>
+                                        <div>Portfolio Website</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Perth Air Conditioning</h3>
+                                    <p class="text-gray-300">40% more client inquiries</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Custom
+                                        Design</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Animation</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Showcase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Repeat for all other cards... -->
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-paint-brush"></i></div>
+                                        <div>Brand Campaign</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Suger Comb</h3>
+                                    <p class="text-gray-300">3M+ impressions</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Visual
+                                        Identity</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Content</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Influencers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-store"></i></div>
+                                        <div>E-Commerce Platform</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Imperial Lash</h3>
+                                    <p class="text-gray-300">300% revenue growth in 6 months</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Shopify</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Payment
+                                        Gateway</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Inventory</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-briefcase"></i></div>
+                                        <div>Corporate Website</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Sallow Trading</h3>
+                                    <p class="text-gray-300">75% increase in lead generation</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">WordPress</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">UI/UX</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <div
+                            class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
+                            <div class="relative h-64 overflow-hidden">
+                                <div class="placeholder-img w-full h-full flex items-center justify-center">
+                                    <div>
+                                        <div class="text-4xl mb-4"><i class="fas fa-store"></i></div>
+                                        <div>E-Commerce Platform</div>
+                                    </div>
+                                </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70">
+                                </div>
+                                <div class="absolute bottom-0 left-0 p-6">
+                                    <h3 class="text-2xl font-bold text-white mb-2">Imperial Lash</h3>
+                                    <p class="text-gray-300">300% revenue growth in 6 months</p>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span
+                                        class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Shopify</span>
+                                    <span
+                                        class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Payment
+                                        Gateway</span>
+                                    <span
+                                        class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Inventory</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
             </div>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <h3 class="text-2xl font-bold text-white mb-2">Sallow Trading</h3>
-            <p class="text-gray-300">75% increase in lead generation</p>
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">WordPress</span>
-            <span class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">UI/UX</span>
-            <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Responsive</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="swiper-slide">
-      <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-        <div class="relative h-64 overflow-hidden">
-          <div class="placeholder-img w-full h-full flex items-center justify-center">
-            <div>
-              <div class="text-4xl mb-4"><i class="fas fa-paint-brush"></i></div>
-              <div>Brand Campaign</div>
-            </div>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <h3 class="text-2xl font-bold text-white mb-2">Suger Comb</h3>
-            <p class="text-gray-300">3M+ impressions</p>
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Visual Identity</span>
-            <span class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Content</span>
-            <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Influencers</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="swiper-slide">
-      <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-        <div class="relative h-64 overflow-hidden">
-          <div class="placeholder-img w-full h-full flex items-center justify-center">
-            <div>
-              <div class="text-4xl mb-4"><i class="fas fa-palette"></i></div>
-              <div>Portfolio Website</div>
-            </div>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-          <div class="absolute bottom-0 left-0 p-6">
-            <h3 class="text-2xl font-bold text-white mb-2">Perth Air Conditioning</h3>
-            <p class="text-gray-300">40% more client inquiries</p>
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Custom Design</span>
-            <span class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Animation</span>
-            <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Showcase</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Repeat for all other cards... -->
-    <div class="swiper-slide">
-         <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-                    <div class="relative h-64 overflow-hidden">
-                        <div class="placeholder-img w-full h-full flex items-center justify-center">
-                            <div>
-                                <div class="text-4xl mb-4"><i class="fas fa-paint-brush"></i></div>
-                                <div>Brand Campaign</div>
-                            </div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2">Suger Comb</h3>
-                            <p class="text-gray-300">3M+ impressions</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Visual
-                                Identity</span>
-                            <span
-                                class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Content</span>
-                            <span
-                                class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Influencers</span>
-                        </div>
-                    </div>
-                </div>
-    </div>
-    <div class="swiper-slide">
-         <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-                    <div class="relative h-64 overflow-hidden">
-                        <div class="placeholder-img w-full h-full flex items-center justify-center">
-                            <div>
-                                <div class="text-4xl mb-4"><i class="fas fa-store"></i></div>
-                                <div>E-Commerce Platform</div>
-                            </div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2">Imperial Lash</h3>
-                            <p class="text-gray-300">300% revenue growth in 6 months</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Shopify</span>
-                            <span
-                                class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Payment
-                                Gateway</span>
-                            <span
-                                class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Inventory</span>
-                        </div>
-                    </div>
-                </div>
-    </div>
-    <div class="swiper-slide">
-              <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-                    <div class="relative h-64 overflow-hidden">
-                        <div class="placeholder-img w-full h-full flex items-center justify-center">
-                            <div>
-                                <div class="text-4xl mb-4"><i class="fas fa-briefcase"></i></div>
-                                <div>Corporate Website</div>
-                            </div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2">Sallow Trading</h3>
-                            <p class="text-gray-300">75% increase in lead generation</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">WordPress</span>
-                            <span
-                                class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">UI/UX</span>
-                            <span
-                                class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Responsive</span>
-                        </div>
-                    </div>
-                </div>
-
-    </div>
-     <div class="swiper-slide">
-        <div class="service-card rounded-xl overflow-hidden transform transition-all duration-500 hover:glow">
-                    <div class="relative h-64 overflow-hidden">
-                        <div class="placeholder-img w-full h-full flex items-center justify-center">
-                            <div>
-                                <div class="text-4xl mb-4"><i class="fas fa-store"></i></div>
-                                <div>E-Commerce Platform</div>
-                            </div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2">Imperial Lash</h3>
-                            <p class="text-gray-300">300% revenue growth in 6 months</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Shopify</span>
-                            <span
-                                class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Payment
-                                Gateway</span>
-                            <span
-                                class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Inventory</span>
-                        </div>
-                    </div>
-                </div>
-     </div>
-    
-  </div>
-
-
- 
-</div>
 
 
         </div>
@@ -537,9 +562,9 @@
             class="absolute top-1/4 right-0 w-40 h-40 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 opacity-10 blur-3xl rotate">
         </div>
     </section>
-    
-    
-                                              {{-- TESTIMONIAL SECTION  --}}
+
+
+    {{-- TESTIMONIAL SECTION  --}}
 
     <section class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -549,88 +574,133 @@
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">What our clients say about working with us</p>
             </div>
 
-           
-                                                              {{-- slider --}}
+
+            {{-- slider --}}
             <!-- Swiper Container -->
-<div class="swiper_work py-8 overflow-visible">
-    <div class="swiper-wrapper">
-        <!-- Slide 1 -->
-        <div class="swiper-slide">
-            <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow ">
-                <div class="flex items-center mb-6">
-                    <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">SJ</div>
-                    <div>
-                        <h4 class="text-lg font-bold text-white">Sarah Johnson</h4>
-                        <p class="text-gray-400 text-sm">CEO, Imperial Lash</p>
+            <div class="swiper_work py-8 overflow-visible">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow ">
+                            <div class="flex items-center mb-6">
+                                <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">SJ</div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">Sarah Johnson</h4>
+                                    <p class="text-gray-400 text-sm">CEO, Imperial Lash</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-6">"Shil Consultancy Services transformed our online presence
+                                completely. Our website traffic increased by 200% within three months of working with
+                                them."</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow">
+                            <div class="flex items-center mb-6">
+                                <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">MC</div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">Michael Chen</h4>
+                                    <p class="text-gray-400 text-sm">Marketing Director, Suger Comb</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-6">"Their digital marketing strategies are next-level. We've
+                                seen a consistent 30% month-over-month growth in our online sales since partnering with
+                                them."</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow">
+                            <div class="flex items-center mb-6">
+                                <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">MC</div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">Michael Chen</h4>
+                                    <p class="text-gray-400 text-sm">Marketing Director, Suger Comb</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-6">"Their digital marketing strategies are next-level. We've
+                                seen a consistent 30% month-over-month growth in our online sales since partnering with
+                                them."</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- slide-4 --}}
+                    <div class="swiper-slide">
+                        <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow">
+                            <div class="flex items-center mb-6">
+                                <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">MC</div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-white">Michael Chen</h4>
+                                    <p class="text-gray-400 text-sm">Marketing Director, Suger Comb</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-6">"Their digital marketing strategies are next-level. We've
+                                seen a consistent 30% month-over-month growth in our online sales since partnering with
+                                them."</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="text-gray-300 mb-6">"Shil Consultancy Services transformed our online presence completely. Our website traffic increased by 200% within three months of working with them."</p>
-                <div class="flex text-yellow-400">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="swiper-slide">
-            <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow">
-                <div class="flex items-center mb-6">
-                    <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">MC</div>
-                    <div>
-                        <h4 class="text-lg font-bold text-white">Michael Chen</h4>
-                        <p class="text-gray-400 text-sm">Marketing Director, Suger Comb</p>
-                    </div>
-                </div>
-                <p class="text-gray-300 mb-6">"Their digital marketing strategies are next-level. We've seen a consistent 30% month-over-month growth in our online sales since partnering with them."</p>
-                <div class="flex text-yellow-400">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 3 -->
-         <div class="swiper-slide">
-            <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow">
-                <div class="flex items-center mb-6">
-                    <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">MC</div>
-                    <div>
-                        <h4 class="text-lg font-bold text-white">Michael Chen</h4>
-                        <p class="text-gray-400 text-sm">Marketing Director, Suger Comb</p>
-                    </div>
-                </div>
-                <p class="text-gray-300 mb-6">"Their digital marketing strategies are next-level. We've seen a consistent 30% month-over-month growth in our online sales since partnering with them."</p>
-                <div class="flex text-yellow-400">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-            </div>
-        </div>
-        
-        {{-- slide-4 --}}
-         <div class="swiper-slide">
-            <div class="service-card rounded-xl p-8 transform transition-all duration-500 hover:glow">
-                <div class="flex items-center mb-6">
-                    <div class="testimonial-img w-12 h-12 flex items-center justify-center mr-4">MC</div>
-                    <div>
-                        <h4 class="text-lg font-bold text-white">Michael Chen</h4>
-                        <p class="text-gray-400 text-sm">Marketing Director, Suger Comb</p>
-                    </div>
-                </div>
-                <p class="text-gray-300 mb-6">"Their digital marketing strategies are next-level. We've seen a consistent 30% month-over-month growth in our online sales since partnering with them."</p>
-                <div class="flex text-yellow-400">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-</div>
+            </div>
         </div>
 
         <div
             class="absolute bottom-0 left-1/4 w-40 h-40 rounded-full bg-gradient-to-r from-cyan-400 to-pink-500 opacity-10 blur-3xl rotate">
         </div>
     </section>
+
+    {{-- logo testimonial section --}}
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1"></div>
+            <div class="swiper-slide"><img src="{{ asset('images/avetta.png') }}" alt="Logo 2"></div>
+            <div class="swiper-slide"><img src="{{ asset('images/browz.png') }}" alt="Logo 3"></div>
+            <div class="swiper-slide"><img src="{{ asset('images/canqualify.png') }}" alt="Logo 4"></div>
+            <div class="swiper-slide"><img src="{{ asset('images/imperial.png') }}" alt="Logo 5"></div>
+            <div class="swiper-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6"></div>
+        </div>
+    </div>
+   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 5,        // show 5 logos
+      centeredSlides: true,    // keep centered
+      loop: true,              // infinite
+      speed: 6000,             // smooth speed
+      autoplay: {
+        delay: 0,              // no delay
+        disableOnInteraction: false,
+      },
+      freeMode: true,          // continuous scroll
+      freeModeMomentum: false, 
+      allowTouchMove: false,   // disable manual dragging
+    });
+  </script> 
+
+
+
+
+    {{-- form section --}}
 
     <section id="contact" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -643,8 +713,7 @@
 
                     <div class="space-y-6 mb-10">
                         <div class="flex items-center">
-                            <div
-                                class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
+                            <div class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-envelope text-3xl gradient-text"></i>
                             </div>
                             <div>
@@ -655,8 +724,7 @@
                         </div>
 
                         <div class="flex items-center">
-                            <div
-                                class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
+                            <div class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-phone text-3xl gradient-text"></i>
                             </div>
                             <div>
@@ -667,8 +735,7 @@
                         </div>
 
                         <div class="flex items-center">
-                            <div
-                                class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
+                            <div class="w-12 h-12  rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-map-marker-alt text-3xl gradient-text"></i>
                             </div>
                             <div>
@@ -676,7 +743,21 @@
                                 <p class="text-gray-400">1054, 5th floor, Rahim manson, Suborna R/A,</p>
                                 <p class="text-gray-400">Golpahar, Chittagong, Chittagong, Bangladesh</p>
                             </div>
+
                         </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                               <i class="fas fa-landmark text-3xl gradient-text"></i>
+
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Branch Office</h4>
+                                <p class="text-gray-400">123 King’s Street, Suite 400,</p>
+                                <p class="text-gray-400">California, United Kingdom</p>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div class="flex space-x-4">
@@ -700,8 +781,9 @@
                 </div>
 
                 <div class="md:w-1/2 md:pl-12">
-                    <form action="{{ route('send.message') }}" method="POST" class="service-card rounded-xl p-8 bg-gray-900 shadow-lg">
-                         @csrf 
+                    <form action="{{ route('send.message') }}" method="POST"
+                        class="service-card rounded-xl p-8 bg-gray-900 shadow-lg">
+                        @csrf
                         <h3 class="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
 
                         <div class="mb-6">
@@ -775,8 +857,7 @@
     @include('partials.footer')
 
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-   
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        < /body>

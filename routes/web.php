@@ -107,3 +107,8 @@ Route::prefix('careers')->group(function () {
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 Route::view('/terms-of-service', 'terms-of-service')->name('terms.of.service');
 Route::view('/cookie-policy', 'cookie-policy')->name('cookie.policy');
+
+//logout
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::post('/jobs/upload', [App\Http\Controllers\Admin\JobController::class, 'upload'])->name('dashboard.jobs.upload');

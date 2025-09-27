@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="mb-4">
+            <div class="mb-4 w-[850px]">
                 <label for="job_description" class="block mb-2 text-sm font-medium text-gray-400">Job Description</label>
                 <textarea id="job_description" name="job_description" rows="10" class="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary" required>{{ old('job_description') }}</textarea>
             </div>
@@ -53,24 +53,39 @@
 </div>
 
 <!-- TinyMCE Script Includes -->
-<script src="https://cdn.tiny.cloud/1/vxg8uzmmaeixyal8pd4kbw5ynle2faavvmao3b6xv086l8vh/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-<script>
-  tinymce.init({
-    selector: '#job_description',
-    plugins: [
-      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-    ],
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-    tinycomments_mode: 'embedded',
-    tinycomments_author: 'Author name',
-    mergetags_list: [
-      { value: 'First.Name', title: 'First Name' },
-      { value: 'Email', title: 'Email' },
-    ],
-    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-    uploadcare_public_key: '39570e4ec86cce90d031',
-  });
-</script>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    ClassicEditor
+        .create(document.querySelector('#job_description'), {
+            ckfinder: {
+                uploadUrl: '{{ route('dashboard.jobs.upload') }}'
+            },
+            
+            // 🌟 FIX: Force Black Text and White Background
+            contentStyle: 'body { color: #000000 !important; background-color: #ffffff !important; }', 
+
+            toolbar: {
+                items: [
+                    'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'uploadImage', 'blockQuote', '|', 'undo', 'redo'
+                ]
+            }
+        })
+        .then(editor => {
+            console.log('CKEditor initialized for job_description', editor);
+
+            // CRUCIAL: Add a listener to update the hidden textarea before form submission
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    document.querySelector('#job_description').value = editor.getData();
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error initializing CKEditor:', error);
+        });
+});
+</script>
 @endsection

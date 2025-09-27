@@ -18,9 +18,28 @@
 
                     <div class="mb-4">
                         <label for="location" class="block mb-2 text-sm font-medium text-gray-400">Location</label>
-                        <input type="text" id="location" name="location"
-                            class="w-full bg-dark-3 border border-gray-700 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-primary"
-                            value="{{ old('location', $job->location) }}" required>
+
+                        <select id="location" name="location" required
+                            class="w-full bg-dark-3 border border-gray-700 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-primary">
+
+                            <option value="">Select Job Location</option>
+
+                            <option value="Head office: Golpahar, Rahim mention"
+                                {{ old('location', $job->location ?? '') == 'Head office: Golpahar, Rahim mention' ? 'selected' : '' }}>
+                                Head office: Golpahar, Rahim mention
+                            </option>
+
+                            <option value="Branch office: California"
+                                {{ old('location', $job->location ?? '') == 'Branch office: California' ? 'selected' : '' }}>
+                                Branch office: California
+                            </option>
+
+                            <option value="Branch office: UK"
+                                {{ old('location', $job->location ?? '') == 'Branch office: UK' ? 'selected' : '' }}>
+                                Branch office: UK
+                            </option>
+
+                        </select>
                     </div>
 
                     <div class="mb-4">
@@ -37,21 +56,22 @@
                     <div class="mb-4">
                         <label for="section" class="block mb-2 text-sm font-medium text-gray-400">Post Section</label>
                         <select id="section" name="section"
-                            class="w-full bg-dark-3 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                            class="w-full bg-dark-3 border border-gray-700 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-primary"
                             required>
                             <option value="Engineering" {{ $job->section == 'Engineering' ? 'selected' : '' }}>Engineering
                             </option>
                             <option value="Marketing" {{ $job->section == 'Marketing' ? 'selected' : '' }}>Marketing
                             </option>
                             <option value="Design" {{ $job->section == 'Design' ? 'selected' : '' }}>Design</option>
-                            <option value="SEO" {{ $job->section == 'SEO Expert' ? 'selected' : '' }}>SEO Expert</option>
+                            <option value="SEO" {{ $job->section == 'SEO Expert' ? 'selected' : '' }}>SEO Expert
+                            </option>
                         </select>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 w-[850px]">
                         <label for="job_description" class="block mb-2 text-sm font-medium text-gray-400">Job
                             Description</label>
                         <textarea id="job_description" name="job_description" rows="10"
-                            class="w-full bg-dark-3 border border-gray-700 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-primary"
+                            class="w-full bg-dark-3 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary"
                             required>{{ old('job_description', $job->job_description) }}</textarea>
                     </div>
                 </div>
@@ -66,6 +86,55 @@
             </form>
         </div>
     </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 
-  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ClassicEditor
+                .create(document.querySelector('#job_description'), {
+                    ckfinder: {
+                        uploadUrl: '{{ route('dashboard.jobs.upload') }}'
+                    },
+
+                    // 🌟 UPDATED: Force Black Text and White Background
+                    contentStyle: `
+                body { 
+                    color: #000000 !important; 
+                    background-color: #ffffff !important; 
+                    font-size: 14px;
+                }
+                .ck-content {
+                    color: #000000 !important;
+                    background-color: #ffffff !important;
+                }
+                .ck-editor__editable {
+                    color: #000000 !important;
+                    background-color: #ffffff !important;
+                }
+            `,
+
+                    toolbar: {
+                        items: [
+                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList',
+                            'uploadImage', 'blockQuote', '|', 'undo', 'redo'
+                        ]
+                    }
+                })
+                .then(editor => {
+                    console.log('CKEditor initialized for job_description', editor);
+
+                    // CRUCIAL: Add a listener to update the hidden textarea before form submission
+                    const form = document.querySelector('form');
+                    if (form) {
+                        form.addEventListener('submit', function() {
+                            document.querySelector('#job_description').value = editor.getData();
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error initializing CKEditor:', error);
+                });
+        });
+    </script>
 @endsection

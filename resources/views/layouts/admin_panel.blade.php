@@ -193,13 +193,18 @@
                         <span>Global Settings</span>
                     </a>
                 </nav>
-                <div class="px-4 py-6 border-t border-dark-3">
-                    <a href="#"
-                        class="sidebar-link flex items-center px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:border-red-500">
-                        <i class="fas fa-sign-out-alt w-6 text-center mr-3"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
+              <div class="px-4 py-6 border-t border-dark-3">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+    <a href="#"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        class="sidebar-link flex items-center px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:border-red-500">
+        <i class="fas fa-sign-out-alt w-6 text-center mr-3"></i>
+        <span>Logout</span>
+    </a>
+</div>
             </div>
         </aside>
 

@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- Content with CKEditor -->
-                <div class="col-span-1 md:col-span-2">
+                <div class="col-span-1 md:col-span-2 w-[850px]">
                     <label for="content" class="block  font-semibold mb-2">Content</label>
                     <textarea id="content" name="content" class="hidden" required>{{ old('content') }}</textarea>
                     <div id="editor">{!! old('content') !!}</div>

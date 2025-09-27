@@ -58,4 +58,23 @@ class JobController extends Controller
         $job->delete();
         return redirect()->route('dashboard.jobs.index')->with('success', 'Job post deleted successfully.');
     }
+    public function upload(Request $request)
+{
+    if ($request->hasFile('file')) { // TinyMCE sends the file with the name 'file'
+        $originName = $request->file('file')->getClientOriginalName();
+        $fileName = pathinfo($originName, PATHINFO_FILENAME);
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $fileName = $fileName . '_' . time() . '.' . $extension;
+
+        // Store the file in 'jobs/media' directory on the 'public' disk
+        $path = $request->file('file')->storeAs('jobs/media', $fileName, 'public'); 
+
+        // Return the public URL using the 'location' key that TinyMCE expects
+        return response()->json([
+            'location' => asset('storage/' . $path)
+        ]);
+    }
+
+    return response()->json(['error' => 'File not uploaded'], 400);
+}
 }

@@ -61,7 +61,7 @@
 
                 <!-- Content with CKEditor -->
                 <div class="col-span-1 md:col-span-2">
-                    <label for="content" class="block text-gray-400 font-semibold mb-2">Content</label>
+                    <label for="content" class="block  font-semibold mb-2">Content</label>
                     <textarea id="content" name="content" class="hidden" required>{{ old('content') }}</textarea>
                     <div id="editor">{!! old('content') !!}</div>
                 </div>
@@ -153,4 +153,7 @@
                 });
         });
     </script>
+ 
+      
+
 @endpush

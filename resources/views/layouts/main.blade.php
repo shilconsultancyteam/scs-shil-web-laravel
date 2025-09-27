@@ -90,6 +90,9 @@
     <link rel="manifest" href="{{ asset('Media/favicon/site.webmanifest') }}" />
 </head>
 <body class="bg-gray-100">
+    <div id="preloader">
+    <div class="loader"></div>
+</div>
     @include('partials.header')  <!-- Global Header -->
 
     <main class="min-h-screen">
@@ -101,6 +104,14 @@
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     {{-- Stack for child view scripts --}}
+    <script>
+    window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            preloader.style.display = 'none';
+        }
+    });
+</script>
     @stack('scripts')
 </body>
 </html>

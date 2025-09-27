@@ -669,77 +669,115 @@
         </div>
     </section>
 
-                                               {{-- logo testimonial section --}}
+    {{-- logo testimonial section --}}
 
 
-<section class="py-20 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-                Trusted by <span class="text-white"> Leading Brands</span>
-            </h2>
-        </div>
+    <section class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                    Trusted by <span class="text-white"> Leading Brands</span>
+                </h2>
+            </div>
 
-        <div class="swiper brandSwiper">   <!-- unique container -->
-            <div class="swiper-wrapper">
-                <div class="swiper-slide brand-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1"></div>
-                <div class="swiper-slide brand-slide"><img src="{{ asset('images/avetta.png') }}" alt="Logo 2"></div>
-                <div class="swiper-slide brand-slide"><img src="{{ asset('images/browz.png') }}" alt="Logo 3"></div>
-                <div class="swiper-slide brand-slide"><img src="{{ asset('images/canqualify.png') }}" alt="Logo 4"></div>
-                <div class="swiper-slide brand-slide"><img src="{{ asset('images/imperial.png') }}" alt="Logo 5"></div>
-                <div class="swiper-slide brand-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6"></div>
+            <div class="swiper brandSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1">
+                    </div>
+                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/avetta.png') }}"
+                            alt="Logo 2"></div>
+                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/browz.png') }}" alt="Logo 3">
+                    </div>
+                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/canqualify.png') }}"
+                            alt="Logo 4"></div>
+                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/imperial.png') }}"
+                            alt="Logo 5"></div>
+                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script>
-    var brandSwiper = new Swiper(".brandSwiper", {
-        slidesPerView: "auto",       
-        centeredSlides: true,        
-        loop: true,                  
-        speed: 4000,                 
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        freeMode: true,
-        freeModeMomentum: false,
-        allowTouchMove: false,
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-<style>
-    /* Only affect this slider */
-    .brandSwiper .brand-slide {
-        flex: 0 0 auto;
-        width: 180px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.3s, opacity 0.3s;
-    }
+    <script>
+        var brandSwiper = new Swiper(".brandSwiper", {
+            slidesPerView: "auto",
+            loop: true,
+            speed: 6000, // smooth ticker
+            spaceBetween: 80,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            freeMode: true,
+            freeModeMomentum: false,
+            allowTouchMove: false,
+            centeredSlides: false,
+        });
 
-    .brandSwiper .brand-slide img {
-        max-height: 60px;
-        object-fit: contain;
-    }
+        function updateHighlights() {
+            const slides = document.querySelectorAll(".brand-slide");
+            slides.forEach(slide => {
+                slide.classList.remove("highlight");
+                slide.classList.add("fade");
+            });
 
-    /* Highlight center slides */
-    .brandSwiper .swiper-slide-active,
-    .brandSwiper .swiper-slide-next,
-    .brandSwiper .swiper-slide-prev,
-    .brandSwiper .swiper-slide-next + .swiper-slide {
-        opacity: 1;
-        transform: scale(1.1);
-    }
+            // Get the currently active slide index
+            let active = brandSwiper.realIndex;
+            let total = slides.length;
 
-    /* Fade side slides */
-    .brandSwiper .brand-slide {
-        opacity: 0.3;
-    }
-</style>
+            // highlight 2nd, 3rd, 4th positions relative to active
+            [1, 2, 3].forEach(offset => {
+                let idx = (active + offset) % total;
+                slides[idx].classList.add("highlight");
+                slides[idx].classList.remove("fade");
+            });
+        }
+
+        brandSwiper.on("slideChange", updateHighlights);
+        brandSwiper.on("transitionEnd", updateHighlights);
+
+        // initial call
+        updateHighlights();
+    </script>
+
+    <style>
+        .brandSwiper .brand-slide {
+            flex: 0 0 auto;
+            width: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.4s, opacity 0.4s, filter 0.4s;
+        }
+
+        .brandSwiper .brand-slide img {
+            max-height: 60px;
+            object-fit: contain;
+            transition: transform 0.4s, filter 0.4s;
+        }
+
+        /* Faded logos */
+        .brandSwiper .brand-slide.fade {
+            opacity: 0.3;
+            filter: brightness(0.6);
+            transform: scale(1);
+        }
+
+        /* Highlighted (2,3,4) logos */
+        .brandSwiper .brand-slide.highlight {
+            opacity: 1;
+            filter: brightness(1.5);
+            transform: scale(1.2);
+            /* increase size ~1rem */
+        }
+    </style>
+
+
+
+
 
 
 
@@ -793,7 +831,31 @@
                         </div>
                         <div class="flex items-center">
                             <div class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-landmark text-3xl gradient-text"></i>
+                                <i class="fas fa-globe text-3xl gradient-text spin-globe" aria-hidden="true"></i>
+
+                                <style>
+                                    .spin-globe {
+                                        display: inline-block;
+                                        transform-style: preserve-3d;
+                                        /* enables proper 3D rotation */
+                                        animation: spin-horizontal 5s linear infinite;
+                                    }
+
+                                    @keyframes spin-horizontal {
+                                        0% {
+                                            transform: rotateY(0deg);
+                                        }
+
+                                        100% {
+                                            transform: rotateY(-360deg);
+                                        }
+
+                                        /* Negative for right-to-left */
+                                    }
+                                </style>
+
+
+
 
                             </div>
                             <div>

@@ -57,9 +57,9 @@
                            </div>
                         </div>
                          <div class="team-card rounded-lg p-4 flex items-center space-x-4">
-                           <img src="{{asset('images/sadman.png')}}" alt="Photo of Samantha Kim" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-top">
+                           <img src="{{asset('images/sadman.png')}}" alt="Photo of Sadman Mohammad" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-top">
                            <div>
-                               <h3 class="font-bold text-white">Sadman Bin Yusuf</h3>
+                               <h3 class="font-bold text-white">Sadman Mohammad Yusuf</h3>
                                <p class="text-sm text-gray-400">Frontend Specialist & wordpress devloper</p>
                            </div>
                         </div>
@@ -90,7 +90,7 @@
                     <h2 class="text-3xl font-bold mb-8 text-white orbitron">Graphics Team</h2>
                      <div class="space-y-6">
                         <div class="team-card rounded-lg p-4 flex items-center space-x-4">
-                           <img src="https://placehold.co/64x64/6e45e2/ffffff?text=DG" alt="Photo of David Garcia" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <img src="{{asset('images/arif.png')}}" alt="Photo of Arif Islam" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
                            <div>
                                <h3 class="font-bold text-white">Ariful Islam Shawon</h3>
                                <p class="text-sm text-gray-400">Graphics Designer</p>

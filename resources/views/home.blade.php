@@ -673,31 +673,89 @@
 
 
     <section class="py-20 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-                    Trusted by <span class="text-white"> Leading Brands</span>
-                </h2>
-            </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                Trusted by <span class="text-white"> Leading Brands</span>
+            </h2>
+        </div>
 
-            <div class="swiper brandSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1">
-                    </div>
-                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/avetta.png') }}"
-                            alt="Logo 2"></div>
-                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/browz.png') }}" alt="Logo 3">
-                    </div>
-                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/canqualify.png') }}"
-                            alt="Logo 4"></div>
-                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/imperial.png') }}"
-                            alt="Logo 5"></div>
-                    <div class="swiper-slide brand-slide"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6">
-                    </div>
+        <!-- Swiper -->
+        <div class="swiper brandSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/ariba.png') }}" alt="Logo 1">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/avetta.png') }}" alt="Logo 2">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/browz.png') }}" alt="Logo 3">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/canqualify.png') }}" alt="Logo 4">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/imperial.png') }}" alt="Logo 5">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/ariba.png') }}" alt="Logo 6">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (1).png') }}" alt="Logo 7">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (2).png') }}" alt="Logo 8">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (3).png') }}" alt="Logo 9">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (4).png') }}" alt="Logo 10">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (5).png') }}" alt="Logo 11">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (6).png') }}" alt="Logo 12">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (7).png') }}" alt="Logo 13">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (8).png') }}" alt="Logo 14">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (9).png') }}" alt="Logo 15">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (10).png') }}" alt="Logo 16">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (11).png') }}" alt="Logo 17">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (12).png') }}" alt="Logo 18">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (13).png') }}" alt="Logo 19">
+                </div>
+                <div class="swiper-slide brand-slide">
+                    <img src="{{ asset('images/Shil Client (14).png') }}" alt="Logo 20">
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+    .brand-slide img {
+        height: 100px;   
+        object-fit: contain;
+        margin: 0 auto;
+    }
+</style>
+
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 

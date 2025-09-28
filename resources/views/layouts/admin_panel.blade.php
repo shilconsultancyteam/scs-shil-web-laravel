@@ -125,11 +125,42 @@
                         <i class="fas fa-tachometer-alt w-6 text-center mr-3"></i>
                         <span>Dashboard</span>
                     </a>
-                    <a href="#"
-                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('pages.*') ? 'active' : '' }}">
-                        <i class="fas fa-file-alt w-6 text-center mr-3"></i>
-                        <span>Pages</span>
-                    </a>
+                    {{-- pages section --}}
+                    <div class="relative">
+                        <button onclick="togglePagesDropdown()"
+                            class="sidebar-link flex items-center justify-between w-full px-4 py-3 rounded-lg {{ request()->routeIs('analytics.*') ? 'active' : '' }}">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt w-6 text-center mr-3"></i>
+                                <span>Pages</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"
+                                id="pages-chevron"></i>
+                        </button>
+
+                        <!-- Dropdown Submenu -->
+                        <div id="pages-dropdown" class="ml-6 mt-1 space-y-1 hidden">
+                            <!-- Popular Pages -->
+                            <a href="{{ route('analytics.popular') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('analytics.popular') ? 'active' : '' }}">
+                                <i class="fas fa-chart-line w-4 text-center mr-3"></i>
+                                <span>Popular Pages</span>
+                            </a>
+
+                            <!-- Future submenu (example) -->
+                            <a href="#" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
+                                <i class="fas fa-user-clock w-4 text-center mr-3"></i>
+                                <span>Live Stats</span>
+                            </a>
+
+                            <a href="#" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
+                                <i class="fas fa-link w-4 text-center mr-3"></i>
+                                <span>Top Referrals</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    {{-- blog section  --}}
                     <a href="{{ route('dashboard.blogs.index') }}"
                         class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('dashboard.blogs.*') ? 'active' : '' }}">
                         <i class="fas fa-pen-nib w-6 text-center mr-3"></i>
@@ -193,18 +224,17 @@
                         <span>Global Settings</span>
                     </a>
                 </nav>
-              <div class="px-4 py-6 border-t border-dark-3">
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
+                <div class="px-4 py-6 border-t border-dark-3">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 
-    <a href="#"
-        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-        class="sidebar-link flex items-center px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:border-red-500">
-        <i class="fas fa-sign-out-alt w-6 text-center mr-3"></i>
-        <span>Logout</span>
-    </a>
-</div>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="sidebar-link flex items-center px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:border-red-500">
+                        <i class="fas fa-sign-out-alt w-6 text-center mr-3"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
             </div>
         </aside>
 
@@ -291,6 +321,16 @@
                 document.getElementById('jobs-chevron').classList.remove('rotate-180');
             }
         });
+
+        // total pages
+
+        function togglePagesDropdown() {
+    const dropdown = document.getElementById("pages-dropdown");
+    const chevron = document.getElementById("pages-chevron");
+
+    dropdown.classList.toggle("hidden");
+    chevron.classList.toggle("rotate-180");
+}
     </script>
     <style>
         .sidebar-link {

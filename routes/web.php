@@ -17,6 +17,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\AnalyticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,3 +113,10 @@ Route::view('/cookie-policy', 'cookie-policy')->name('cookie.policy');
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::post('/jobs/upload', [App\Http\Controllers\Admin\JobController::class, 'upload'])->name('dashboard.jobs.upload');
+
+//dashboard pages section
+
+Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+    Route::get('/pages/popular_pages', [AnalyticsController::class, 'popularPages'])
+        ->name('analytics.popular');
+});

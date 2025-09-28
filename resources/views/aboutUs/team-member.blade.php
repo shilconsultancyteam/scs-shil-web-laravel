@@ -15,7 +15,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-white orbitron">Leadership</h2>
                 <div class="flex justify-center">
                     <div class="team-card rounded-xl p-6 w-full max-w-sm text-center">
-                        <img src="https://placehold.co/160x160/6e45e2/ffffff?text=JD" alt="Photo of John Doe" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover">
+                        <img src="{{asset('images/ceo.png')}}" alt="Photo of John Doe" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover">
                         <h3 class="text-2xl font-bold text-white">Saikat Kumer Shill</h3>
                         <p class="gradient-text font-semibold">Chief Executive Officer</p>
                         <div class="mt-4 flex justify-center space-x-4 text-gray-400">
@@ -31,7 +31,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-white orbitron"> Manager</h2>
                 <div class="flex justify-center">
                     <div class="team-card rounded-xl p-6 w-full max-w-sm text-center">
-                        <img src="https://placehold.co/160x160/6e45e2/ffffff?text=JD" alt="Photo of John Doe" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover">
+                        <img src="{{asset('images/niaz.png')}}" alt="Photo of Niaz Morshed" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover object-top">
                         <h3 class="text-2xl font-bold text-white">Niaz Morshed</h3>
                         <p class="gradient-text font-semibold">Brand Manager</p>
                         <div class="mt-4 flex justify-center space-x-4 text-gray-400">
@@ -57,7 +57,7 @@
                            </div>
                         </div>
                          <div class="team-card rounded-lg p-4 flex items-center space-x-4">
-                           <img src="https://placehold.co/64x64/6e45e2/ffffff?text=SY" alt="Photo of Samantha Kim" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <img src="{{asset('images/sadman.png')}}" alt="Photo of Samantha Kim" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-top">
                            <div>
                                <h3 class="font-bold text-white">Sadman Bin Yusuf</h3>
                                <p class="text-sm text-gray-400">Frontend Specialist & wordpress devloper</p>

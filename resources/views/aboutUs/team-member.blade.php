@@ -50,7 +50,7 @@
                     <h2 class="text-3xl font-bold mb-8 text-white orbitron">Tech Team</h2>
                     <div class="space-y-6">
                         <div class="team-card rounded-lg p-4 flex items-center space-x-4">
-                           <img src="https://placehold.co/64x64/6e45e2/ffffff?text=PL" alt="Photo of Alex Lee" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <img src="{{asset('images/pritom.jpeg')}}" alt="Photo of Alex Lee" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
                            <div>
                                <h3 class="font-bold text-white">Pritom Paul</h3>
                                <p class="text-sm text-gray-400">Senior Web Developer</p>

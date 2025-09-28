@@ -12,7 +12,7 @@
 
     @include('partials.header')
 
-    <section class=" items-center relative overflow-hidden">
+    <section class=" items-center relative overflow-hidden ">
         <!-- Floating gradient blobs for visual interest -->
         <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-purple-600 opacity-20 blur-3xl"></div>
         <div class="absolute -left-20 -bottom-20 w-64 h-64 rounded-full bg-blue-600 opacity-20 blur-3xl"></div>

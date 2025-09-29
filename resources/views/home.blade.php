@@ -671,167 +671,179 @@
 
     {{-- logo testimonial section --}}
 
-
     <section class="py-20 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-                Trusted by <span class="text-white"> Leading Brands</span>
-            </h2>
-        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                    Trusted by <span class="text-white"> Leading Brands</span>
+                </h2>
+            </div>
 
-        <!-- Swiper -->
-        <div class="swiper brandSwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/ariba.png') }}" alt="Logo 1">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/avetta.png') }}" alt="Logo 2">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/browz.png') }}" alt="Logo 3">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/canqualify.png') }}" alt="Logo 4">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/imperial.png') }}" alt="Logo 5">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/ariba.png') }}" alt="Logo 6">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (1).png') }}" alt="Logo 7">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (2).png') }}" alt="Logo 8">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (3).png') }}" alt="Logo 9">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (4).png') }}" alt="Logo 10">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (5).png') }}" alt="Logo 11">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (6).png') }}" alt="Logo 12">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (7).png') }}" alt="Logo 13">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (8).png') }}" alt="Logo 14">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (9).png') }}" alt="Logo 15">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (10).png') }}" alt="Logo 16">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (11).png') }}" alt="Logo 17">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (12).png') }}" alt="Logo 18">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (13).png') }}" alt="Logo 19">
-                </div>
-                <div class="swiper-slide brand-slide">
-                    <img src="{{ asset('images/Shil Client (14).png') }}" alt="Logo 20">
+            <!-- CUSTOM TICKER (unique class to avoid conflict) -->
+            <div class="brandTickerCustom">
+                <div class="brand-track">
+                    <!-- add your images here (these will be cloned automatically by JS) -->
+                    <div class="brand-item"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1"></div>
+                    <div class="brand-item"><img src="{{ asset('images/avetta.png') }}" alt="Logo 2"></div>
+                    <div class="brand-item"><img src="{{ asset('images/browz.png') }}" alt="Logo 3"></div>
+                    <div class="brand-item"><img src="{{ asset('images/canqualify.png') }}" alt="Logo 4"></div>
+                    <div class="brand-item"><img src="{{ asset('images/imperial.png') }}" alt="Logo 5"></div>
+                    <div class="brand-item"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6"></div>
+                    <!-- আপনি চাইলে যতগুলি ছবি রাখতে পারবেন -->
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<style>
-    .brand-slide img {
-        height: 100px;   
-        object-fit: contain;
-        margin: 0 auto;
-    }
-</style>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-    <script>
-        var brandSwiper = new Swiper(".brandSwiper", {
-            slidesPerView: "auto",
-            loop: true,
-            speed: 6000, // smooth ticker
-            spaceBetween: 80,
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false,
-            },
-            freeMode: true,
-            freeModeMomentum: false,
-            allowTouchMove: false,
-            centeredSlides: false,
-        });
-
-        function updateHighlights() {
-            const slides = document.querySelectorAll(".brand-slide");
-            slides.forEach(slide => {
-                slide.classList.remove("highlight");
-                slide.classList.add("fade");
-            });
-
-            // Get the currently active slide index
-            let active = brandSwiper.realIndex;
-            let total = slides.length;
-
-            // highlight 2nd, 3rd, 4th positions relative to active
-            [1, 2, 3].forEach(offset => {
-                let idx = (active + offset) % total;
-                slides[idx].classList.add("highlight");
-                slides[idx].classList.remove("fade");
-            });
-        }
-
-        brandSwiper.on("slideChange", updateHighlights);
-        brandSwiper.on("transitionEnd", updateHighlights);
-
-        // initial call
-        updateHighlights();
-    </script>
+    </section>
 
     <style>
-        .brandSwiper .brand-slide {
-            flex: 0 0 auto;
-            width: 180px;
+        /* container */
+        .brandTickerCustom {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* track that will be translated */
+        .brand-track {
+            display: flex;
+            align-items: center;
+            will-change: transform;
+        }
+
+        /* one slide / item: always show 6 items in view */
+        .brand-item {
+            flex: 0 0 calc(100% / 6);
+            /* 6 items visible */
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.4s, opacity 0.4s, filter 0.4s;
+            box-sizing: border-box;
+            padding: 12px 10px;
         }
 
-        .brandSwiper .brand-slide img {
+        /* img */
+        .brand-item img {
             max-height: 60px;
             object-fit: contain;
-            transition: transform 0.4s, filter 0.4s;
+            display: block;
+            transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
         }
 
-        /* Faded logos */
-        .brandSwiper .brand-slide.fade {
+        /* faded (positions 1 & 6) */
+        .brand-item.fade img {
             opacity: 0.3;
             filter: brightness(0.6);
-            transform: scale(1);
+            transform: scale(0.95);
         }
 
-        /* Highlighted (2,3,4) logos */
-        .brandSwiper .brand-slide.highlight {
+        /* highlighted (positions 2,3,4,5) */
+        .brand-item.highlight img {
             opacity: 1;
-            filter: brightness(1.5);
-            transform: scale(1.2);
-            /* increase size ~1rem */
+            filter: brightness(1.25);
+            transform: scale(1.25);
         }
     </style>
+
+    <script>
+        (function() {
+            const ticker = document.querySelector('.brandTickerCustom');
+            if (!ticker) return;
+
+            const track = ticker.querySelector('.brand-track');
+            // original slides (before cloning)
+            let originalSlides = Array.from(track.children);
+            const originalCount = originalSlides.length;
+            if (originalCount === 0) return;
+
+            // clone once to enable seamless loop
+            originalSlides.forEach(node => track.appendChild(node.cloneNode(true)));
+
+            // all slides now (original + clones)
+            const allSlides = Array.from(track.children);
+
+            // sizing
+            function recalcSizes() {
+                slideWidth = track.querySelector('.brand-item').getBoundingClientRect().width;
+                totalWidth = slideWidth * originalCount;
+            }
+
+            let slideWidth = 0;
+            let totalWidth = 0;
+            recalcSizes();
+
+            // animation vars
+            let pos = 0; // current translated X (px)
+            const speed = 100; // px per second; increase for faster ticker (try 150-220 for very fast)
+            let lastTime = null;
+            let lastHighlightUpdate = 0;
+
+            // update highlight classes based on current pos
+            function updateHighlights() {
+                // recompute sizes in case of resize
+                recalcSizes();
+
+                // left-most visible logical index
+                let leftIndex = Math.floor((-pos) / slideWidth);
+                leftIndex = ((leftIndex % originalCount) + originalCount) % originalCount;
+
+                // positions 0..5 relative to leftIndex are the six visible slots
+                const visiblePositions = [];
+                for (let i = 0; i < 6; i++) {
+                    visiblePositions.push((leftIndex + i) % originalCount);
+                }
+
+                // apply classes to every slide (including clones) by logicalIndex = idx % originalCount
+                allSlides.forEach((el, idx) => {
+                    const logical = idx % originalCount;
+                    el.classList.remove('highlight', 'fade');
+                    const posIndex = visiblePositions.indexOf(logical);
+                    if (posIndex !== -1) {
+                        if (posIndex === 0 || posIndex === 5) {
+                            el.classList.add('fade');
+                        } else {
+                            el.classList.add('highlight');
+                        }
+                    }
+                });
+            }
+
+            // animation loop
+            function step(ts) {
+                if (!lastTime) lastTime = ts;
+                const dt = (ts - lastTime) / 1000;
+                lastTime = ts;
+
+                // move left continuously
+                pos -= speed * dt;
+
+                // loop (when we've scrolled one set of original slides)
+                if (pos <= -totalWidth) pos += totalWidth;
+
+                track.style.transform = `translate3d(${pos}px, 0, 0)`;
+
+                // update highlights not every frame (throttle ~100ms)
+                if (ts - lastHighlightUpdate > 100) {
+                    updateHighlights();
+                    lastHighlightUpdate = ts;
+                }
+
+                requestAnimationFrame(step);
+            }
+
+            // handle resize (recalc widths)
+            window.addEventListener('resize', () => {
+                // reset timing sentinel so no big jump
+                lastTime = null;
+                recalcSizes();
+            });
+
+            // start
+            recalcSizes();
+            updateHighlights();
+            requestAnimationFrame(step);
+
+        })();
+    </script>
+
 
 
 

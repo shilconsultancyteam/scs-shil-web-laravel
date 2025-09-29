@@ -137,16 +137,13 @@
                                 id="pages-chevron"></i>
                         </button>
 
-                        <!-- Dropdown Submenu -->
                         <div id="pages-dropdown" class="ml-6 mt-1 space-y-1 hidden">
-                            <!-- Popular Pages -->
                             <a href="{{ route('analytics.popular') }}"
                                 class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('analytics.popular') ? 'active' : '' }}">
                                 <i class="fas fa-chart-line w-4 text-center mr-3"></i>
                                 <span>Popular Pages</span>
                             </a>
 
-                            <!-- Future submenu (example) -->
                             <a href="#" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
                                 <i class="fas fa-user-clock w-4 text-center mr-3"></i>
                                 <span>Live Stats</span>
@@ -160,12 +157,42 @@
                     </div>
 
 
-                    {{-- blog section  --}}
-                    <a href="{{ route('dashboard.blogs.index') }}"
-                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('dashboard.blogs.*') ? 'active' : '' }}">
-                        <i class="fas fa-pen-nib w-6 text-center mr-3"></i>
-                        <span>Blogs</span>
-                    </a>
+                    {{-- blog section - UPDATED WITH DROPDOWN --}}
+                    <div class="relative">
+                        <button onclick="toggleBlogsDropdown()"
+                            class="sidebar-link flex items-center justify-between w-full px-4 py-3 rounded-lg 
+                                {{ request()->routeIs('dashboard.blogs.*') || request()->routeIs('dashboard.comments.*') || request()->routeIs('dashboard.categories.*') ? 'active' : '' }}">
+                            <div class="flex items-center">
+                                <i class="fas fa-pen-nib w-6 text-center mr-3"></i>
+                                <span>Blogs</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200" id="blogs-chevron"></i>
+                        </button>
+
+                        <div id="blogs-dropdown" class="ml-6 mt-1 space-y-1 hidden">
+                            <a href="{{ route('dashboard.blogs.create') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.blogs.create') ? 'active' : '' }}">
+                                <i class="fas fa-plus w-4 text-center mr-3"></i>
+                                <span>Add Blogs</span>
+                            </a>
+                            <a href="{{ route('dashboard.blogs.index') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.blogs.index') && !request()->routeIs('dashboard.blogs.create') ? 'active' : '' }}">
+                                <i class="fas fa-list-alt w-4 text-center mr-3"></i>
+                                <span>Existing Blogs</span>
+                            </a>
+                            <a href="{{ route('dashboard.comments.index') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.comments.*') ? 'active' : '' }}">
+                                <i class="fas fa-comment-dots w-4 text-center mr-3"></i>
+                                <span>View Comments</span>
+                            </a>
+                            <a href="{{ route('dashboard.categories.index') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.categories.*') ? 'active' : '' }}">
+                                <i class="fas fa-tags w-4 text-center mr-3"></i>
+                                <span>Add Categories</span>
+                            </a>
+                        </div>
+                    </div>
+
                     @auth
                         @if (auth()->user()->role === 'admin')
                             <a href="{{ route('access_control') }}"
@@ -186,7 +213,6 @@
                         <i class="fas fa-sitemap w-6 text-center mr-3"></i>
                         <span>Sitemap</span>
                     </a>
-                    <!-- Jobs Appointment with Dropdown -->
                     <div class="relative">
                         <button onclick="toggleJobsDropdown()"
                             class="sidebar-link flex items-center justify-between w-full px-4 py-3 rounded-lg {{ request()->routeIs('dashboard.jobs.*') || request()->routeIs('dashboard.applicants.*') ? 'active' : '' }}">
@@ -198,7 +224,6 @@
                                 id="jobs-chevron"></i>
                         </button>
 
-                        <!-- Dropdown Submenu -->
                         <div id="jobs-dropdown" class="ml-6 mt-1 space-y-1 hidden">
                             <a href="{{ route('dashboard.jobs.index') }}"
                                 class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.jobs.*') ? 'active' : '' }}">
@@ -311,26 +336,48 @@
             chevron.classList.toggle('rotate-180');
         }
 
-        // Close dropdown when clicking outside
+        // total pages
+        function togglePagesDropdown() {
+            const dropdown = document.getElementById("pages-dropdown");
+            const chevron = document.getElementById("pages-chevron");
+
+            dropdown.classList.toggle("hidden");
+            chevron.classList.toggle("rotate-180");
+        }
+
+        // NEW: Blog Dropdown Function
+        function toggleBlogsDropdown() {
+            const dropdown = document.getElementById("blogs-dropdown");
+            const chevron = document.getElementById("blogs-chevron");
+
+            dropdown.classList.toggle("hidden");
+            chevron.classList.toggle("rotate-180");
+        }
+        
+        // Close dropdown when clicking outside - UPDATED to include Blogs
         document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('jobs-dropdown');
+            
+            // Jobs Dropdown Logic
+            const jobsDropdown = document.getElementById('jobs-dropdown');
             const jobsButton = document.querySelector('[onclick="toggleJobsDropdown()"]');
 
-            if (!jobsButton.contains(event.target) && !dropdown.contains(event.target)) {
-                dropdown.classList.add('hidden');
+            if (jobsButton && jobsDropdown && !jobsButton.contains(event.target) && !jobsDropdown.contains(event.target)) {
+                jobsDropdown.classList.add('hidden');
                 document.getElementById('jobs-chevron').classList.remove('rotate-180');
+            }
+
+            // Pages Dropdown Logic (already implemented)
+            
+            // NEW: Blogs Dropdown Logic
+            const blogsDropdown = document.getElementById('blogs-dropdown');
+            const blogsButton = document.querySelector('[onclick="toggleBlogsDropdown()"]');
+
+            if (blogsButton && blogsDropdown && !blogsButton.contains(event.target) && !blogsDropdown.contains(event.target)) {
+                blogsDropdown.classList.add('hidden');
+                document.getElementById('blogs-chevron').classList.remove('rotate-180');
             }
         });
 
-        // total pages
-
-        function togglePagesDropdown() {
-    const dropdown = document.getElementById("pages-dropdown");
-    const chevron = document.getElementById("pages-chevron");
-
-    dropdown.classList.toggle("hidden");
-    chevron.classList.toggle("rotate-180");
-}
     </script>
     <style>
         .sidebar-link {

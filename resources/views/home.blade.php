@@ -682,14 +682,20 @@
             <!-- CUSTOM TICKER (unique class to avoid conflict) -->
             <div class="brandTickerCustom">
                 <div class="brand-track">
-                    <!-- add your images here (these will be cloned automatically by JS) -->
-                    <div class="brand-item"><img src="{{ asset('images/ariba.png') }}" alt="Logo 1"></div>
-                    <div class="brand-item"><img src="{{ asset('images/avetta.png') }}" alt="Logo 2"></div>
-                    <div class="brand-item"><img src="{{ asset('images/browz.png') }}" alt="Logo 3"></div>
-                    <div class="brand-item"><img src="{{ asset('images/canqualify.png') }}" alt="Logo 4"></div>
-                    <div class="brand-item"><img src="{{ asset('images/imperial.png') }}" alt="Logo 5"></div>
-                    <div class="brand-item"><img src="{{ asset('images/ariba.png') }}" alt="Logo 6"></div>
-                    <!-- আপনি চাইলে যতগুলি ছবি রাখতে পারবেন -->
+               
+                    <div class="brand-item"><img src="{{ asset('images/Logo 01.png') }}" alt="Logo 1"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Logo 02.png') }}" alt="Logo 2"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Logo 03.png') }}" alt="Logo 3"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Logo 04.png') }}" alt="Logo 4"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Logo 05.png') }}" alt="Logo 5"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Logo 06.png') }}" alt="Logo 6"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Shil Client (4).png') }}" alt="Logo 6"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Shil Client (7).png') }}" alt="Logo 6"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Shil Client.png') }}" alt="Logo 6"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Shil Client (3).png') }}" alt="Logo 6"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Shil Client (4).png') }}" alt="Logo 6"></div>
+                    <div class="brand-item"><img src="{{ asset('images/Shil Client (5).png') }}" alt="Logo 6"></div>
+                   
                 </div>
             </div>
         </div>
@@ -722,7 +728,7 @@
 
         /* img */
         .brand-item img {
-            max-height: 60px;
+            max-height: 120px;
             object-fit: contain;
             display: block;
             transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;

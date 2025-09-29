@@ -1,282 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Design Template</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+@section('title', 'Our Team')
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@section('content')
+<main id="team" class="py-20 relative overflow-hidden pt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">Meet Our Team</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">The architects of your digital success. A blend of creativity, technology, and strategy.</p>
+            </div>
 
-        :root {
-            --primary: #6e45e2;
-            --secondary: #88d3ce;
-            --accent: #ff7e5f;
-            --dark: #0f0e17;
-            --light: #fffffe;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-        }
-
-        /* Grid background style */
-        .grid-bg {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* Particle styles */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(var(--primary), var(--secondary));
-            opacity: 0.6;
-            z-index: -1;
-        }
-
-        /* Floating animation for particles */
-        @keyframes floating {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        .swiper {
-            width: 100%;
-            height: 300px;
-        }
-
-        .swiper-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #fff;
-            
-        }
-    </style>
-</head>
-
-<body class="grid-bg">
-    <div id="particles"></div>
-
-    <div class="max-w-7xl mx-auto py-12 grid-bg ">
-
-        <h1 class="mt-20  text-4xl text-center font-bold"> Meet our team members </h1>
-        {{-- slider start --}}
-        <div class="team_slider mt-10">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    {{-- slide-1 --}}
-                    <div class="swiper-slide">
-                        <div
-                            class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-500 
-              text-white rounded-xl shadow-lg p-10 flex flex-col md:flex-row 
-              items-center gap-8 w-[900px] max-w-full">
-
-                            <!-- Image Section -->
-                            <div class="w-48 h-64 overflow-hidden rounded-lg shadow-md flex-shrink-0">
-                                <img src="{{ asset('images/person-1.png') }}" alt="Profile Image"
-                                    class="object-cover w-full h-full">
-                            </div>
-
-                            <!-- Position/Name Section -->
-                            <div class="flex-1">
-                                <h2 class="text-3xl font-semibold">Neaz Morshed</h2>
-                                <div class="mt-2 w-16 h-1 bg-white"></div>
-                                <p class="mt-4 text-lg uppercase tracking-wider text-gray-200">
-                                    Founder & Managing Partner
-                                </p>
-                            </div>
-
-                            <!-- About Section -->
-                            <div class="flex-1 text-base leading-relaxed text-gray-100">
-                                <p>
-                                    Neaz has over 10 years of experience in business strategy, leadership,
-                                    and innovation. Passionate about empowering teams and driving growth.
-                                </p>
-                            </div>
-
+            <!-- CEO Section -->
+            <section class="mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-white orbitron">Leadership</h2>
+                <div class="flex justify-center">
+                    <div class="team-card rounded-xl p-6 w-full max-w-sm text-center">
+                        <img src="{{asset('images/ceo.png')}}" alt="Photo of John Doe" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover">
+                        <h3 class="text-2xl font-bold text-white">Saikat Kumer Shill</h3>
+                        <p class="gradient-text font-semibold">Chief Executive Officer</p>
+                        <div class="mt-4 flex justify-center space-x-4 text-gray-400">
+                            <a href="#" class="hover:text-white"><i class="fab fa-linkedin-in text-xl"></i></a>
+                            <a href="#" class="hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
                         </div>
                     </div>
-                    {{-- slide-1 --}}
-                    <div class="swiper-slide">
-                        <div
-                            class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-500 
-              text-white rounded-xl shadow-lg p-10 flex flex-col md:flex-row 
-              items-center gap-8 w-[900px] max-w-full">
-
-                            <!-- Image Section -->
-                            <div class="w-48 h-64 overflow-hidden rounded-lg shadow-md flex-shrink-0">
-                                <img src="{{ asset('images/person-1.png') }}" alt="Profile Image"
-                                    class="object-cover w-full h-full">
-                            </div>
-
-                            <!-- Position/Name Section -->
-                            <div class="flex-1">
-                                <h2 class="text-3xl font-semibold">Neaz Morshed</h2>
-                                <div class="mt-2 w-16 h-1 bg-white"></div>
-                                <p class="mt-4 text-lg uppercase tracking-wider text-gray-200">
-                                    Founder & Managing Partner
-                                </p>
-                            </div>
-
-                            <!-- About Section -->
-                            <div class="flex-1 text-base leading-relaxed text-gray-100">
-                                <p>
-                                    Neaz has over 10 years of experience in business strategy, leadership,
-                                    and innovation. Passionate about empowering teams and driving growth.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                    {{-- slide-1 --}}
-                    <div class="swiper-slide">
-                        <div
-                            class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-500 
-              text-white rounded-xl shadow-lg p-10 flex flex-col md:flex-row 
-              items-center gap-8 w-[900px] max-w-full">
-
-                            <!-- Image Section -->
-                            <div class="w-48 h-64 overflow-hidden rounded-lg shadow-md flex-shrink-0">
-                                <img src="{{ asset('images/person-1.png') }}" alt="Profile Image"
-                                    class="object-cover w-full h-full">
-                            </div>
-
-                            <!-- Position/Name Section -->
-                            <div class="flex-1">
-                                <h2 class="text-3xl font-semibold">Neaz Morshed</h2>
-                                <div class="mt-2 w-16 h-1 bg-white"></div>
-                                <p class="mt-4 text-lg uppercase tracking-wider text-gray-200">
-                                    Founder & Managing Partner
-                                </p>
-                            </div>
-
-                            <!-- About Section -->
-                            <div class="flex-1 text-base leading-relaxed text-gray-100">
-                                <p>
-                                    Neaz has over 10 years of experience in business strategy, leadership,
-                                    and innovation. Passionate about empowering teams and driving growth.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                    {{-- slide-1 --}}
-                    <div class="swiper-slide">
-                        <div
-                            class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-500 
-              text-white rounded-xl shadow-lg p-10 flex flex-col md:flex-row 
-              items-center gap-8 w-[900px] max-w-full">
-
-                            <!-- Image Section -->
-                            <div class="w-48 h-64 overflow-hidden rounded-lg shadow-md flex-shrink-0">
-                                <img src="{{ asset('images/person-1.png') }}" alt="Profile Image"
-                                    class="object-cover w-full h-full">
-                            </div>
-
-                            <!-- Position/Name Section -->
-                            <div class="flex-1">
-                                <h2 class="text-3xl font-semibold">Neaz Morshed</h2>
-                                <div class="mt-2 w-16 h-1 bg-white"></div>
-                                <p class="mt-4 text-lg uppercase tracking-wider text-gray-200">
-                                    Founder & Managing Partner
-                                </p>
-                            </div>
-
-                            <!-- About Section -->
-                            <div class="flex-1 text-base leading-relaxed text-gray-100">
-                                <p>
-                                    Neaz has over 10 years of experience in business strategy, leadership,
-                                    and innovation. Passionate about empowering teams and driving growth.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-
-
-
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+            </section>
+
+            <!-- Managers Section -->
+        <section class="mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-white orbitron"> Manager</h2>
+                <div class="flex justify-center">
+                    <div class="team-card rounded-xl p-6 w-full max-w-sm text-center">
+                        <img src="{{asset('images/niaz.png')}}" alt="Photo of Niaz Morshed" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover object-top">
+                        <h3 class="text-2xl font-bold text-white">Niaz Morshed</h3>
+                        <p class="gradient-text font-semibold">Brand Manager</p>
+                        <div class="mt-4 flex justify-center space-x-4 text-gray-400">
+                            <a href="#" class="hover:text-white"><i class="fab fa-linkedin-in text-xl"></i></a>
+                            <a href="#" class="hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Department Sections -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 ">
+                <!-- Tech Team -->
+                <section>
+                    <h2 class="text-3xl font-bold mb-8 text-white orbitron">Tech Team</h2>
+                    <div class="space-y-6">
+                        <div class="team-card rounded-lg p-4 flex items-center space-x-4">
+                           <img src="{{asset('images/pritom.jpeg')}}" alt="Photo of Alex Lee" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <div>
+                               <h3 class="font-bold text-white">Pritom Paul</h3>
+                               <p class="text-sm text-gray-400">Senior Web Developer</p>
+                           </div>
+                        </div>
+                         <div class="team-card rounded-lg p-4 flex items-center space-x-4">
+                           <img src="{{asset('images/sadman.png')}}" alt="Photo of Sadman Mohammad" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-top">
+                           <div>
+                               <h3 class="font-bold text-white">Sadman Mohammad Yusuf</h3>
+                               <p class="text-sm text-gray-400">Frontend Specialist & wordpress devloper</p>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Marketing Team -->
+                <section>
+                    <h2 class="text-3xl font-bold mb-8 text-white orbitron">Marketing Team</h2>
+                     <div class="space-y-6">
+                        <div class="team-card rounded-lg p-4 flex items-center space-x-4">
+                           <img src="https://placehold.co/64x64/6e45e2/ffffff?text=TK" alt="Photo of Ben Williams" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <div>
+                               <h3 class="font-bold text-white">Tania Khanam</h3>
+                               <p class="text-sm text-gray-400">Marketter</p>
+                           </div>
+                        </div>
+                         <div class="team-card rounded-lg p-4 flex items-center space-x-4">
+                           <img src="https://placehold.co/64x64/6e45e2/ffffff?text=CF" alt="Photo of Chloe Foster" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <div>
+                               <h3 class="font-bold text-white">Chloe Foster</h3>
+                               <p class="text-sm text-gray-400">Social Media Manager</p>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Creative Team -->
+                 <section>
+                    <h2 class="text-3xl font-bold mb-8 text-white orbitron">Graphics Team</h2>
+                     <div class="space-y-6">
+                        <div class="team-card rounded-lg p-4 flex items-center space-x-4">
+                           <img src="{{asset('images/arif.png')}}" alt="Photo of Arif Islam" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <div>
+                               <h3 class="font-bold text-white">Ariful Islam Shawon</h3>
+                               <p class="text-sm text-gray-400">Graphics Designer</p>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Admin Team -->
+                 <section>
+                    <h2 class="text-3xl font-bold mb-8 text-white orbitron">Admin Team</h2>
+                     <div class="space-y-6">
+                        <div class="team-card rounded-lg p-4 flex items-center space-x-4">
+                           <img src="https://placehold.co/64x64/6e45e2/ffffff?text=OH" alt="Photo of Olivia Harris" class="w-16 h-16 rounded-full flex-shrink-0 object-cover">
+                           <div>
+                               <h3 class="font-bold text-white">Olivia Harris</h3>
+                               <p class="text-sm text-gray-400">Office Manager</p>
+                           </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
+    </main>
 
-        <script>
-            new Swiper('.mySwiper', {
-                loop: true,
-                slidesPerView: 1, // show only 1 slide at a time
-                slidesPerGroup: 1, // move 1 slide per transition
-                spaceBetween: 0, // no gap needed since it's one slide
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                speed: 800,
-            });
+@endsection
 
-
-            function createParticles() {
-                const container = document.getElementById('particles');
-                const particleCount = 30; // You can adjust this number
-
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-
-                    // Random size between 2px and 6px
-                    const size = Math.random() * 4 + 2;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-
-                    // Random position
-                    particle.style.left = `${Math.random() * 100}%`;
-                    particle.style.top = `${Math.random() * 100}%`;
-
-                    // Random animation duration and delay
-                    const duration = Math.random() * 20 + 10;
-                    const delay = Math.random() * 5;
-                    particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
-
-                    container.appendChild(particle);
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', () => {
-                createParticles();
-            });
-        </script>
-</body>
-
-</html>
+@push('scripts')
+<script>
+  
+</script>
+@endpush

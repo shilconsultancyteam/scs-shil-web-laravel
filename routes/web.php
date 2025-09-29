@@ -19,6 +19,9 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\AnalyticsController;
 
+use App\Http\Controllers\Admin\AdminCommentController; 
+use App\Http\Controllers\Admin\CategoryController;     
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,3 +123,25 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/pages/popular_pages', [AnalyticsController::class, 'popularPages'])
         ->name('analytics.popular');
 });
+
+// Existing Blog Routes
+Route::resource('blogs', AdminBlogController::class)->names('dashboard.blogs');
+Route::post('/blogs/upload', [AdminBlogController::class, 'upload'])->name('dashboard.blogs.upload');
+
+
+// NEW: Comment Routes (View Comments & Delete Comments)
+Route::controller(AdminCommentController::class)->prefix('comments')->name('dashboard.comments.')->group(function () {
+    Route::get('/', 'index')->name('index'); 
+    // Uses route model binding: /dashboard/comments/{blog_comment_id}
+    Route::delete('/{comment}', 'destroy')->name('destroy'); 
+});
+
+// NEW: Category Routes (Add Categories)
+Route::controller(CategoryController::class)->prefix('categories')->name('dashboard.categories.')->group(function () {
+    Route::get('/', 'index')->name('index'); 
+    Route::post('/', 'store')->name('store');
+});
+
+// Example routes for comments management
+Route::resource('comments', AdminCommentController::class)->only(['index', 'update', 'destroy'])->names('dashboard.comments');
+// Route::get('/categories', [CategoryController::class, 'index'])->name('dashboard.categories.index');

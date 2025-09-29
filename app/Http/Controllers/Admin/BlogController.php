@@ -15,10 +15,11 @@ class BlogController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+   public function index()
     {
-        // Use withCount to efficiently get the number of comments for each blog
-        $blogs = Blog::withCount('comments')->latest()->get();
+        // FIX: Changed ->get() to ->paginate(10) to enable $blogs->links()
+        $blogs = Blog::withCount('comments')->latest()->paginate(10); 
+        
         $categories = [
             'Digital Marketing' => ['Social Media Marketing', 'SEO', 'Content Creation'],
             'Web Development' => ['Full-Stack', 'Frontend', 'Backend', 'Mobile App'],
@@ -39,7 +40,7 @@ class BlogController extends Controller
             'Web Development' => ['Full-Stack', 'Frontend', 'Backend', 'Mobile App'],
             'Branding' => ['Brand Strategy', 'Visual Identity']
         ];
-        return view('dashboard.blogs.create', compact('categories'));
+         return view('dashboard.blogs.blog_create', compact('categories'));
     }
 
     /**

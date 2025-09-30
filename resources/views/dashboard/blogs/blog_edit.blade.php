@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-white mb-6">Edit Blog: <span class="text-blue-400">{{ $blog->title }}</span></h1>
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-white">Edit Blog: <span class="text-blue-400">{{ $blog->title }}</span></h1>
+            
+            <a href="{{ route('dashboard.blogs.index') }}"
+                class="px-4 py-2 bg-gray-500/20 text-white rounded-lg hover:bg-gray-500/30 transition">
+                <i class="fas fa-list mr-2"></i>View All Blogs
+            </a>
+        </div>
 
         @if ($errors->any())
             <div class="bg-red-500 text-white p-4 rounded-lg mb-6">
@@ -17,8 +24,10 @@
         <form action="{{ route('dashboard.blogs.update', $blog->slug) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            
             <div class="bg-[#1a1a1a] p-6 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Title -->
+                
+                {{-- Title --}}
                 <div>
                     <label for="title" class="block text-gray-400 font-semibold mb-2">Title</label>
                     <input type="text" id="title" name="title" value="{{ old('title', $blog->title) }}"
@@ -26,82 +35,61 @@
                         required>
                 </div>
 
-                <!-- Subtitle -->
+                {{-- Subtitle --}}
                 <div>
                     <label for="subtitle" class="block text-gray-400 font-semibold mb-2">Subtitle</label>
                     <input type="text" id="subtitle" name="subtitle" value="{{ old('subtitle', $blog->subtitle) }}"
                         class="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
                 </div>
 
-                <!-- Category -->
+                {{-- Category --}}
                 <div>
                     <label for="category" class="block text-gray-400 font-semibold mb-2">Category</label>
                     <select id="category" name="category"
                         class="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
                         required>
                         <option value="">Select Category</option>
-                        @foreach (array_keys($categories) as $category)
-                            <option value="{{ $category }}"
-                                {{ old('category', $blog->category) == $category ? 'selected' : '' }}>{{ $category }}
+                        
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->name }}" 
+                                {{ old('category', $blog->category) == $category->name ? 'selected' : '' }} 
+                                data-children="{{ json_encode($category->children->pluck('name')) }}">
+                                {{ $category->name }}
                             </option>
                         @endforeach
                     </select>
                 </div>
 
-                <!-- Subcategory -->
+                {{-- Subcategory --}}
                 <div>
                     <label for="subcategory" class="block text-gray-400 font-semibold mb-2">Subcategory</label>
                     <select id="subcategory" name="subcategory"
                         class="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
                         <option value="">Select Subcategory</option>
-                        @if ($blog->category && isset($categories[$blog->category]))
-                            @foreach ($categories[$blog->category] as $subcategory)
-                                <option value="{{ $subcategory }}"
-                                    {{ old('subcategory', $blog->subcategory) == $subcategory ? 'selected' : '' }}>
-                                    {{ $subcategory }}</option>
-                            @endforeach
-                        @endif
                     </select>
                 </div>
 
-                <!-- Featured Image -->
+                {{-- Featured Image --}}
                 <div class="col-span-1 md:col-span-2">
-                    <label for="image" class="block text-gray-400 font-semibold mb-2">Featured Image</label>
-                    @if ($blog->image)
-                        <div class="mb-4">
-                            <img src="{{ asset('storage/' . $blog->image) }}" alt="Current Image"
-                                class="max-w-xs rounded-lg shadow-lg">
-                        </div>
-                    @endif
+                    <label for="image" class="block text-gray-400 font-semibold mb-2">Featured Image (Leave blank to keep existing)</label>
                     <input type="file" id="image" name="image"
                         class="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
-                    <small class="text-gray-500 mt-2 block">Leave this field blank to keep the current image.</small>
+                    
+                    @if ($blog->image)
+                        <p class="text-sm text-gray-500 mt-2">Current Image: <a href="{{ asset('storage/' . $blog->image) }}" target="_blank" class="text-blue-400 hover:text-blue-300">View Image</a></p>
+                    @endif
                 </div>
 
-                <!-- Content with CKEditor -->
+                {{-- Content Section - UPDATED WITH WORKING CKEDITOR --}}
                 <div class="col-span-1 md:col-span-2">
-                    <label for="content" class="block text-gray-400 font-semibold mb-2">Content</label>
-                    <textarea id="content" name="content" required>{{ old('content', $blog->content) }}</textarea>
+                    <label for="content" class="block font-semibold mb-2 text-gray-400">Content</label>
+                    <textarea id="content" name="content" rows="10" class="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-primary" required>{{ old('content', $blog->content) }}</textarea>
                 </div>
 
-                <style>
-                    .ck-editor__editable {
-                        min-height: 500px !important;
-                        background: #fff !important;
-                        color: #000 !important;
-                    }
-
-                    /* Make full width instead of max-width 600px */
-                    .ck-editor {
-                        width: 100% !important;
-                    }
-                </style>
-
-                <!-- Submit Button -->
                 <div class="col-span-1 md:col-span-2 flex justify-end">
                     <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
-                        Update Blog
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+                        Update Blog Post
                     </button>
                 </div>
             </div>
@@ -110,67 +98,81 @@
 @endsection
 
 @push('scripts')
-    {{-- ✅ Use CKEditor5 classic build from CDN --}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Handle subcategory dropdown based on category selection
-            const categories = @json($categories);
+            // --- DYNAMIC SUBCATEGORY LOGIC (UPDATED FOR EDIT) ---
             const categorySelect = document.getElementById('category');
             const subcategorySelect = document.getElementById('subcategory');
+            
+            const oldSubcategory = "{{ old('subcategory', $blog->subcategory) }}"; 
 
-            const updateSubcategories = (selectedCategory) => {
+            function updateSubcategories() {
                 subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
-                if (selectedCategory && categories[selectedCategory]) {
-                    categories[selectedCategory].forEach(sub => {
-                        const option = document.createElement('option');
-                        option.value = sub;
-                        option.textContent = sub;
-                        const currentSubcategory = "{{ old('subcategory', $blog->subcategory) }}";
-                        if (sub === currentSubcategory) {
-                            option.selected = true;
-                        }
-                        subcategorySelect.appendChild(option);
-                    });
+
+                const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+                const childrenJson = selectedOption.getAttribute('data-children');
+                
+                if (childrenJson) {
+                    try {
+                        const children = JSON.parse(childrenJson);
+
+                        children.forEach(function(subCategoryName) {
+                            const option = document.createElement('option');
+                            option.value = subCategoryName;
+                            option.textContent = subCategoryName;
+                            
+                            if (oldSubcategory && oldSubcategory === subCategoryName) {
+                                option.selected = true;
+                            }
+
+                            subcategorySelect.appendChild(option);
+                        });
+                    } catch (e) {
+                        console.error('Error parsing subcategory JSON:', e);
+                    }
                 }
-            };
+            }
 
-            // Initial load
-            updateSubcategories(categorySelect.value);
+            if (categorySelect.value) {
+                updateSubcategories();
+            }
 
-            // Listen for changes
-            categorySelect.addEventListener('change', (e) => {
-                updateSubcategories(e.target.value);
-            });
+            categorySelect.addEventListener('change', updateSubcategories);
+            // --- END DYNAMIC SUBCATEGORY LOGIC ---
 
-            // ✅ Initialize CKEditor5
+            // CKEditor Initialization - USING WORKING VERSION FROM JOBS
             ClassicEditor
                 .create(document.querySelector('#content'), {
-                    toolbar: [
-                        'heading', '|',
-                        'bold', 'italic', 'underline', 'strikethrough', '|',
-                        'alignment', '|',
-                        'link', 'insertTable', 'mediaEmbed', '|',
-                        'bulletedList', 'numberedList', 'todoList', '|',
-                        'blockQuote', 'codeBlock', '|',
-                        'undo', 'redo'
-                    ],
-                    image: {
-                        toolbar: [
-                            'imageTextAlternative',
-                            'toggleImageCaption',
-                            'imageStyle:inline',
-                            'imageStyle:block',
-                            'imageStyle:side'
+                    ckfinder: {
+                        uploadUrl: '{{ route('dashboard.blogs.upload') }}'
+                    },
+                    
+                    // Force Black Text and White Background for better visibility
+                    contentStyle: 'body { color: #000000 !important; background-color: #ffffff !important; }', 
+
+                    toolbar: {
+                        items: [
+                            'heading', '|', 
+                            'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                            'uploadImage', 'blockQuote', '|', 
+                            'undo', 'redo'
                         ]
                     }
                 })
                 .then(editor => {
-                    console.log('CKEditor initialized ✅');
+                    console.log('CKEditor initialized for blog content', editor);
+
+                    // Update the textarea before form submission
+                    const form = document.querySelector('form');
+                    if (form) {
+                        form.addEventListener('submit', function() {
+                            document.querySelector('#content').value = editor.getData();
+                        });
+                    }
                 })
                 .catch(error => {
-                    console.error('CKEditor error:', error);
+                    console.error('Error initializing CKEditor:', error);
                 });
         });
     </script>

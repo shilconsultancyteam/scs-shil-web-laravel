@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-// NOTE: Uncomment this when you create your Category model
-// use App\Models\Category;
+
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -17,14 +17,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = [
-            'Digital Marketing' => ['Social Media Marketing', 'SEO', 'Content Creation'],
-            'Web Development' => ['Full-Stack', 'Frontend', 'Backend', 'Mobile App'],
-            'Branding' => ['Brand Strategy', 'Visual Identity']
-        ];
-        
+        // Fetch all top-level categories, eagerly load their children (subcategories)
+        // Eager loading prevents the N+1 query problem.
+        $categories = Category::parents()->with('children')->get();
+
+        // Also fetch all top-level categories for the Parent dropdown list in the 'Add' form
+        $parent_categories = Category::parents()->get();
+
         // This is now looking for resources/views/dashboard/categories/index.blade.php
-        return view('dashboard.categories.index', compact('categories')); 
+        return view('dashboard.categories.index', compact('categories', 'parent_categories'));
     }
 
     /**
@@ -36,14 +37,38 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|integer', // For subcategories
+            // 'name' must be unique in the 'categories' table
+            'name' => 'required|string|max:255|unique:categories,name',
+            // parent_id must exist in the 'categories' table OR be null
+            'parent_id' => 'nullable|integer|exists:categories,id',
         ]);
 
-        // When Category model is created, use:
-        // Category::create($request->all());
+        // Use the Category model to create the new record in the database
+        Category::create([
+            'name' => $request->name,
+            'parent_id' => $request->parent_id // Will be null if not selected
+        ]);
 
-        Session::flash('success', 'Category added successfully! (Placeholder functionality)');
+        Session::flash('success', 'Category added successfully!');
         return redirect()->route('dashboard.categories.index');
     }
+
+    /**
+     * Remove the specified category from storage.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        // Since we used onDelete('cascade') in the migration,
+        // deleting a parent will automatically delete its subcategories.
+        Session::flash('warning', 'Category and its subcategories (if any) deleted successfully!');
+        return redirect()->route('dashboard.categories.index');
+    }
+
+    // NOTE: For 'update' functionality, you would typically add an 'edit' and 'update' method.
+    // The 'edit' method fetches the category for the form, and the 'update' method handles the POST request.
 }

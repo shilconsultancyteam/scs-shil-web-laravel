@@ -42,9 +42,14 @@
                         class="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500"
                         required>
                         <option value="">Select Category</option>
-                        @foreach (array_keys($categories) as $category)
-                            <option value="{{ $category }}" {{ old('category') == $category ? 'selected' : '' }}>
-                                {{ $category }}</option>
+                        {{-- Iterate over the Eloquent Collection $categories --}}
+                        @foreach ($categories as $category)
+                            {{-- Store children names as JSON data attribute --}}
+                            <option value="{{ $category->name }}" 
+                                {{ old('category') == $category->name ? 'selected' : '' }} 
+                                data-children="{{ json_encode($category->children->pluck('name')) }}">
+                                {{ $category->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -54,12 +59,7 @@
                     <select id="subcategory" name="subcategory"
                         class="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:outline-none focus:border-blue-500">
                         <option value="">Select Subcategory</option>
-                        @if (old('category') && isset($categories[old('category')]))
-                            @foreach ($categories[old('category')] as $subcategory)
-                                <option value="{{ $subcategory }}"
-                                    {{ old('subcategory') == $subcategory ? 'selected' : '' }}>{{ $subcategory }}</option>
-                            @endforeach
-                        @endif
+                        {{-- Subcategories will be populated by JavaScript --}}
                     </select>
                 </div>
 
@@ -90,11 +90,52 @@
     <script src="{{ asset('js/ckeditor.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Subcategory logic
-            const categories = @json($categories);
+            // --- DYNAMIC SUBCATEGORY LOGIC ---
             const categorySelect = document.getElementById('category');
             const subcategorySelect = document.getElementById('subcategory');
-            // ... (rest of the subcategory logic) ...
+            // Store the old subcategory value to persist selection after validation errors
+            const oldSubcategory = "{{ old('subcategory') }}"; 
+
+            function updateSubcategories() {
+                // Clear existing subcategories
+                subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+
+                const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+
+                // Get the children data attribute (containing JSON string of subcategory names)
+                const childrenJson = selectedOption.getAttribute('data-children');
+                
+                if (childrenJson) {
+                    try {
+                        const children = JSON.parse(childrenJson);
+
+                        children.forEach(function(subCategoryName) {
+                            const option = document.createElement('option');
+                            option.value = subCategoryName;
+                            option.textContent = subCategoryName;
+                            
+                            // Select the option if it matches the old submitted value
+                            if (oldSubcategory && oldSubcategory === subCategoryName) {
+                                option.selected = true;
+                            }
+
+                            subcategorySelect.appendChild(option);
+                        });
+                    } catch (e) {
+                        console.error('Error parsing subcategory JSON:', e);
+                    }
+                }
+            }
+
+            // Initial load check for old input persistence
+            if (categorySelect.value) {
+                updateSubcategories();
+            }
+
+            // Event listener for category change
+            categorySelect.addEventListener('change', updateSubcategories);
+            // --- END DYNAMIC SUBCATEGORY LOGIC ---
+
 
             // CKEditor Initialization (using #editor)
             ClassicEditor
@@ -102,7 +143,6 @@
                     ckfinder: {
                         uploadUrl: "{{ route('dashboard.blogs.upload') }}"
                     },
-                    // ... (rest of the CKEditor configuration) ...
                 })
                 .then(editor => {
                     // Update the hidden textarea ('content') on submit

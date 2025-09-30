@@ -20,7 +20,9 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\AnalyticsController;
 
 use App\Http\Controllers\Admin\AdminCommentController; 
-use App\Http\Controllers\Admin\CategoryController;     
+use App\Http\Controllers\Admin\CategoryController; 
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -136,12 +138,6 @@ Route::controller(AdminCommentController::class)->prefix('comments')->name('dash
     Route::delete('/{comment}', 'destroy')->name('destroy'); 
 });
 
-// NEW: Category Routes (Add Categories)
-Route::controller(CategoryController::class)->prefix('categories')->name('dashboard.categories.')->group(function () {
-    Route::get('/', 'index')->name('index'); 
-    Route::post('/', 'store')->name('store');
-});
+// ✅ FIX: Replaced manual route group with Route::resource to define edit, update, and destroy routes.
+Route::resource('categories', CategoryController::class)->names('dashboard.categories')->except(['create', 'show']);
 
-// Example routes for comments management
-Route::resource('comments', AdminCommentController::class)->only(['index', 'update', 'destroy'])->names('dashboard.comments');
-// Route::get('/categories', [CategoryController::class, 'index'])->name('dashboard.categories.index');

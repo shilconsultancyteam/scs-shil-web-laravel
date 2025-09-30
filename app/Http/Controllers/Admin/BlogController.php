@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Category; // Import the Category model
 
 class BlogController extends Controller
 {
@@ -17,14 +18,11 @@ class BlogController extends Controller
      */
    public function index()
     {
-        // FIX: Changed ->get() to ->paginate(10) to enable $blogs->links()
         $blogs = Blog::withCount('comments')->latest()->paginate(10); 
         
-        $categories = [
-            'Digital Marketing' => ['Social Media Marketing', 'SEO', 'Content Creation'],
-            'Web Development' => ['Full-Stack', 'Frontend', 'Backend', 'Mobile App'],
-            'Branding' => ['Brand Strategy', 'Visual Identity']
-        ];
+        // DYNAMIC: Fetch all parent categories with their children
+        $categories = Category::parents()->with('children')->get();
+        
         return view('dashboard.blogs.index', compact('blogs', 'categories'));
     }
 
@@ -35,11 +33,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = [
-            'Digital Marketing' => ['Social Media Marketing', 'SEO', 'Content Creation'],
-            'Web Development' => ['Full-Stack', 'Frontend', 'Backend', 'Mobile App'],
-            'Branding' => ['Brand Strategy', 'Visual Identity']
-        ];
+        // DYNAMIC: Fetch all parent categories with their children
+        $categories = Category::parents()->with('children')->get();
+         
          return view('dashboard.blogs.blog_create', compact('categories'));
     }
 
@@ -97,11 +93,9 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $categories = [
-            'Digital Marketing' => ['Social Media Marketing', 'SEO', 'Content Creation'],
-            'Web Development' => ['Full-Stack', 'Frontend', 'Backend', 'Mobile App'],
-            'Branding' => ['Brand Strategy', 'Visual Identity']
-        ];
+        // DYNAMIC: Fetch all parent categories with their children
+        $categories = Category::parents()->with('children')->get();
+
         return view('dashboard.blogs.blog_edit', compact('blog', 'categories'));
     }
 
@@ -154,6 +148,8 @@ class BlogController extends Controller
         return redirect()->route('dashboard.blogs.index')->with('success', 'Blog post updated successfully!');
     }
 
+    // ... (destroy and generateSlugs methods remain the same) ...
+
     /**
      * Remove the specified resource from storage.
      *
@@ -194,6 +190,7 @@ class BlogController extends Controller
 
         return redirect()->route('dashboard.blogs.index')->with('success', 'Slugs generated successfully!');
     }
+    
     /**
      * Handle image upload from CKEditor
      *

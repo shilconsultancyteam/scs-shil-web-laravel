@@ -5,28 +5,36 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-32">
     <header class="text-center mb-16">
-        <h1 class="text-4xl md:text-6xl font-bold gradient-text">Digital Insights</h1>
+        <h1 class="text-4xl md:text-6xl font-bold gradient-text p-2">Digital Insights</h1>
         <p class="text-xl text-gray-300 max-w-3xl mx-auto mt-4">Your source for the latest news, tips, and trends in digital marketing and web technology.</p>
     </header>
 
     <div class="flex flex-wrap justify-center gap-4 mb-10" id="category-filter">
         @php
-            // Get current category slug from URL if exists
+            // Get current category slug from URL. It will be the segment after 'blog/category'.
+            // If the URL is just '/blog', this will be null.
             $currentCategory = request()->segment(3) ?? null;
+            $activeGradientStyle = 'background: linear-gradient(to right, #00bfff, #007bff);';
         @endphp
         
+        {{-- "All" Button --}}
         <a href="{{ route('public.blogs.index') }}" 
-           class="category-btn px-5 py-2 rounded-full font-medium text-white transition-colors duration-300 transform hover:scale-105 {{ !$currentCategory ? 'active' : '' }}" 
-           style="background: linear-gradient(to right, #00bfff, #007bff);">
+           class="category-btn px-5 py-2 rounded-full font-medium text-white transition-colors duration-300 transform hover:scale-105 
+           {{ !$currentCategory ? 'active' : 'text-gray-300 bg-gray-700 hover:bg-gray-600' }}" 
+           {{-- Apply gradient style ONLY if it is the active "All" button --}}
+           style="{{ !$currentCategory ? $activeGradientStyle : '' }}">
             All
         </a>
+        
+        {{-- Dynamic Category Buttons --}}
         @forelse ($categories as $category)
             @php
                 $categorySlug = Str::slug($category);
                 $isActive = $currentCategory === $categorySlug;
             @endphp
             <a href="{{ route('public.blogs.category', ['slug' => $categorySlug]) }}" 
-               class="category-btn px-5 py-2 rounded-full font-medium transition-colors duration-300 transform hover:scale-105 {{ $isActive ? 'active' : 'text-gray-300 bg-gray-700 hover:bg-gray-600 hover:text-white' }}">
+               class="category-btn px-5 py-2 rounded-full font-medium transition-colors duration-300 transform hover:scale-105 
+               {{ $isActive ? 'active' : 'text-gray-300 bg-gray-700 hover:bg-gray-600 hover:text-white' }}">
                 {{ $category }}
             </a>
         @empty
@@ -74,75 +82,11 @@
 </div>
 
 <style>
+    /* This CSS class applies the gradient to all category buttons with the 'active' class, 
+       which includes the specific categories when they are active. */
     .category-btn.active {
         background: linear-gradient(to right, #00bfff, #007bff) !important;
         color: white !important;
     }
 </style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        
-        // Function to update active state
-        function setActiveCategory() {
-            // Remove active class from all buttons first
-            categoryButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if (!btn.hasAttribute('style')) {
-                    btn.classList.add('bg-gray-700');
-                    btn.classList.add('text-gray-300');
-                }
-            });
-            
-            // Get current category from URL
-            const pathSegments = window.location.pathname.split('/');
-            const categorySlug = pathSegments[pathSegments.length - 1];
-            
-            // Find and activate the current category button
-            categoryButtons.forEach(btn => {
-                const btnUrl = btn.getAttribute('href');
-                const btnSlug = btnUrl.split('/').pop();
-                
-                if (categorySlug === btnSlug || (categorySlug === 'blogs' && btn.textContent.trim() === 'All')) {
-                    btn.classList.add('active');
-                    btn.classList.remove('bg-gray-700');
-                    btn.classList.remove('text-gray-300');
-                    
-                    // If "All" button is active, give it the gradient background
-                    if (btn.textContent.trim() === 'All') {
-                        btn.style.background = 'linear-gradient(to right, #00bfff, #007bff)';
-                    }
-                }
-            });
-        }
-        
-        // Set active category on page load
-        setActiveCategory();
-        
-        // Add click event listeners
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Remove active class from all buttons
-                categoryButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (!btn.hasAttribute('style')) {
-                        btn.classList.add('bg-gray-700');
-                        btn.classList.add('text-gray-300');
-                    }
-                });
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                this.classList.remove('bg-gray-700');
-                this.classList.remove('text-gray-300');
-                
-                // If "All" button is clicked, give it the gradient background
-                if (this.textContent.trim() === 'All') {
-                    this.style.background = 'linear-gradient(to right, #00bfff, #007bff)';
-                }
-            });
-        });
-    });
-</script>
 @endsection

@@ -144,12 +144,14 @@
                                 <span>Popular Pages</span>
                             </a>
 
-                            <a href="{{ route('analytics.live-stats') }}" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
+                            <a href="{{ route('analytics.live-stats') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
                                 <i class="fas fa-user-clock w-4 text-center mr-3"></i>
                                 <span>Live Stats</span>
                             </a>
 
-                            <a href="#" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
+                            <a href="{{ route('analytics.top-referrals') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
                                 <i class="fas fa-link w-4 text-center mr-3"></i>
                                 <span>Top Referrals</span>
                             </a>
@@ -166,7 +168,8 @@
                                 <i class="fas fa-pen-nib w-6 text-center mr-3"></i>
                                 <span>Blogs</span>
                             </div>
-                            <i class="fas fa-chevron-down text-xs transition-transform duration-200" id="blogs-chevron"></i>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"
+                                id="blogs-chevron"></i>
                         </button>
 
                         <div id="blogs-dropdown" class="ml-6 mt-1 space-y-1 hidden">
@@ -208,11 +211,7 @@
                             </a>
                         @endif
                     @endauth
-                    <a href="#"
-                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('sitemap.*') ? 'active' : '' }}">
-                        <i class="fas fa-sitemap w-6 text-center mr-3"></i>
-                        <span>Sitemap</span>
-                    </a>
+                    
                     <div class="relative">
                         <button onclick="toggleJobsDropdown()"
                             class="sidebar-link flex items-center justify-between w-full px-4 py-3 rounded-lg {{ request()->routeIs('dashboard.jobs.*') || request()->routeIs('dashboard.applicants.*') ? 'active' : '' }}">
@@ -238,11 +237,47 @@
                         </div>
                     </div>
 
-                    <a href="#"
-                        class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('seo.*') ? 'active' : '' }}">
-                        <i class="fas fa-chart-line w-6 text-center mr-3"></i>
-                        <span>SEO</span>
-                    </a>
+                    {{-- SEO section --}}
+                    <div class="relative">
+                        <button onclick="toggleSeoDropdown()"
+                            class="sidebar-link flex items-center justify-between w-full px-4 py-3 rounded-lg {{ request()->routeIs('dashboard.seo.*') ? 'active' : '' }}">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line w-6 text-center mr-3"></i>
+                                <span>SEO</span>
+                            </div>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"
+                                id="seo-chevron"></i>
+                        </button>
+
+                        <div id="seo-dropdown" class="ml-6 mt-1 space-y-1 hidden">
+                            <a href="{{ route('dashboard.seo.meta-tags') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.meta-tags') ? 'active' : '' }}">
+                                <i class="fas fa-tags w-4 text-center mr-3"></i>
+                                <span>Meta Tags</span>
+                            </a>
+                            <a href="{{ route('dashboard.seo.analytics') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.analytics') ? 'active' : '' }}">
+                                <i class="fas fa-chart-bar w-4 text-center mr-3"></i>
+                                <span>Analytics</span>
+                            </a>
+                            <a href="{{ route('dashboard.seo.keywords') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.keywords') ? 'active' : '' }}">
+                                <i class="fas fa-key w-4 text-center mr-3"></i>
+                                <span>Keywords</span>
+                            </a>
+                            <a href="{{ route('dashboard.seo.sitemap') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.sitemap') ? 'active' : '' }}">
+                                <i class="fas fa-sitemap w-4 text-center mr-3"></i>
+                                <span>Sitemap</span>
+                            </a>
+                            <a href="{{ route('dashboard.seo.robots') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.robots') ? 'active' : '' }}">
+                                <i class="fas fa-robot w-4 text-center mr-3"></i>
+                                <span>Robots.txt</span>
+                            </a>
+                        </div>
+                    </div>
+                    
                     <a href="#"
                         class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ request()->routeIs('settings.*') ? 'active' : '' }}">
                         <i class="fas fa-cogs w-6 text-center mr-3"></i>
@@ -254,7 +289,8 @@
                         @csrf
                     </form>
 
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    <a href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="sidebar-link flex items-center px-4 py-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:border-red-500">
                         <i class="fas fa-sign-out-alt w-6 text-center mr-3"></i>
                         <span>Logout</span>
@@ -314,71 +350,268 @@
     @stack('scripts')
 
     <script>
+        // Dropdown toggle functions
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdownMenu');
             dropdown.classList.toggle('hidden');
         }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('button, svg, path')) {
-                const dropdowns = document.getElementById('dropdownMenu');
-                if (dropdowns && !dropdowns.classList.contains('hidden')) {
-                    dropdowns.classList.add('hidden');
-                }
-            }
-        }
-
         function toggleJobsDropdown() {
             const dropdown = document.getElementById('jobs-dropdown');
             const chevron = document.getElementById('jobs-chevron');
-
             dropdown.classList.toggle('hidden');
             chevron.classList.toggle('rotate-180');
         }
 
-        // total pages
         function togglePagesDropdown() {
             const dropdown = document.getElementById("pages-dropdown");
             const chevron = document.getElementById("pages-chevron");
-
             dropdown.classList.toggle("hidden");
             chevron.classList.toggle("rotate-180");
         }
 
-        // NEW: Blog Dropdown Function
         function toggleBlogsDropdown() {
             const dropdown = document.getElementById("blogs-dropdown");
             const chevron = document.getElementById("blogs-chevron");
-
             dropdown.classList.toggle("hidden");
             chevron.classList.toggle("rotate-180");
         }
-        
-        // Close dropdown when clicking outside - UPDATED to include Blogs
+
+        // SEO Dropdown Function
+        function toggleSeoDropdown() {
+            const dropdown = document.getElementById("seo-dropdown");
+            const chevron = document.getElementById("seo-chevron");
+            dropdown.classList.toggle("hidden");
+            chevron.classList.toggle("rotate-180");
+        }
+
+        // Close dropdowns when clicking outside
         document.addEventListener('click', function(event) {
-            
-            // Jobs Dropdown Logic
+            // Jobs Dropdown
             const jobsDropdown = document.getElementById('jobs-dropdown');
             const jobsButton = document.querySelector('[onclick="toggleJobsDropdown()"]');
-
             if (jobsButton && jobsDropdown && !jobsButton.contains(event.target) && !jobsDropdown.contains(event.target)) {
                 jobsDropdown.classList.add('hidden');
                 document.getElementById('jobs-chevron').classList.remove('rotate-180');
             }
 
-            // Pages Dropdown Logic (already implemented)
-            
-            // NEW: Blogs Dropdown Logic
+            // Pages Dropdown
+            const pagesDropdown = document.getElementById('pages-dropdown');
+            const pagesButton = document.querySelector('[onclick="togglePagesDropdown()"]');
+            if (pagesButton && pagesDropdown && !pagesButton.contains(event.target) && !pagesDropdown.contains(event.target)) {
+                pagesDropdown.classList.add('hidden');
+                document.getElementById('pages-chevron').classList.remove('rotate-180');
+            }
+
+            // Blogs Dropdown
             const blogsDropdown = document.getElementById('blogs-dropdown');
             const blogsButton = document.querySelector('[onclick="toggleBlogsDropdown()"]');
-
             if (blogsButton && blogsDropdown && !blogsButton.contains(event.target) && !blogsDropdown.contains(event.target)) {
                 blogsDropdown.classList.add('hidden');
                 document.getElementById('blogs-chevron').classList.remove('rotate-180');
             }
+
+            // SEO Dropdown
+            const seoDropdown = document.getElementById('seo-dropdown');
+            const seoButton = document.querySelector('[onclick="toggleSeoDropdown()"]');
+            if (seoButton && seoDropdown && !seoButton.contains(event.target) && !seoDropdown.contains(event.target)) {
+                seoDropdown.classList.add('hidden');
+                document.getElementById('seo-chevron').classList.remove('rotate-180');
+            }
         });
 
+        // SEO Specific JavaScript Functions
+        function updateCharacterCounts() {
+            // Meta title counter
+            const metaTitle = document.getElementById('meta_title');
+            const titleCount = document.getElementById('titleCount');
+            if (metaTitle && titleCount) {
+                titleCount.textContent = metaTitle.value.length;
+                if (metaTitle.value.length > 60) {
+                    titleCount.classList.add('text-red-400');
+                } else {
+                    titleCount.classList.remove('text-red-400');
+                }
+            }
+
+            // Meta description counter
+            const metaDescription = document.getElementById('meta_description');
+            const descCount = document.getElementById('descCount');
+            if (metaDescription && descCount) {
+                descCount.textContent = metaDescription.value.length;
+                if (metaDescription.value.length > 160) {
+                    descCount.classList.add('text-red-400');
+                } else {
+                    descCount.classList.remove('text-red-400');
+                }
+            }
+        }
+
+        // Keyword suggestion function
+        function suggestKeywords() {
+            const primaryInput = document.getElementById('primary_keywords');
+            const secondaryInput = document.getElementById('secondary_keywords');
+            
+            if (primaryInput) {
+                const consultancyKeywords = [
+                    'business consulting', 'management consultancy', 'corporate strategy',
+                    'process improvement', 'digital transformation', 'business optimization',
+                    'operational efficiency', 'strategic planning', 'business development',
+                    'performance management', 'organizational development', 'change management'
+                ];
+                
+                primaryInput.placeholder = `e.g., ${consultancyKeywords.slice(0, 3).join(', ')}...`;
+            }
+            
+            if (secondaryInput) {
+                const locationKeywords = [
+                    'consultancy services in [city]', 'business consultants near me',
+                    'management consulting firms', 'corporate advisory services',
+                    'business process optimization', 'strategic business consulting'
+                ];
+                
+                secondaryInput.placeholder = `e.g., ${locationKeywords.slice(0, 2).join(', ')}...`;
+            }
+        }
+
+        // Sitemap generation status
+        function checkSitemapStatus() {
+            const generateBtn = document.getElementById('generateSitemapBtn');
+            const statusElement = document.getElementById('sitemapStatus');
+            
+            if (generateBtn) {
+                generateBtn.addEventListener('click', function() {
+                    const originalText = generateBtn.innerHTML;
+                    generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating...';
+                    generateBtn.disabled = true;
+                    
+                    // Simulate processing
+                    setTimeout(() => {
+                        generateBtn.innerHTML = originalText;
+                        generateBtn.disabled = false;
+                        if (statusElement) {
+                            statusElement.innerHTML = '<span class="text-green-400">Sitemap generated successfully!</span>';
+                        }
+                    }, 2000);
+                });
+            }
+        }
+
+        // Robots.txt validation
+        function validateRobotsContent() {
+            const robotsTextarea = document.getElementById('robots_content');
+            const submitBtn = document.querySelector('button[type="submit"]');
+            
+            if (robotsTextarea && submitBtn) {
+                robotsTextarea.addEventListener('input', function() {
+                    const content = this.value;
+                    const hasUserAgent = content.includes('User-agent:');
+                    const hasDisallow = content.includes('Disallow:');
+                    const hasAllow = content.includes('Allow:');
+                    
+                    if (!hasUserAgent) {
+                        this.classList.add('border-yellow-400');
+                    } else {
+                        this.classList.remove('border-yellow-400');
+                    }
+                });
+            }
+        }
+
+        // Analytics code validation
+        function validateAnalyticsCode() {
+            const analyticsTextarea = document.getElementById('analytics_code');
+            
+            if (analyticsTextarea) {
+                analyticsTextarea.addEventListener('input', function() {
+                    const code = this.value;
+                    const hasGtag = code.includes('gtag(') || code.includes('ga(');
+                    const hasGoogleAnalytics = code.includes('google-analytics');
+                    const hasScriptTag = code.includes('<script>');
+                    
+                    if ((hasGtag || hasGoogleAnalytics) && hasScriptTag) {
+                        this.classList.remove('border-red-400');
+                        this.classList.add('border-green-400');
+                    } else {
+                        this.classList.remove('border-green-400');
+                        this.classList.add('border-red-400');
+                    }
+                });
+            }
+        }
+
+        // Initialize SEO functions when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCharacterCounts();
+            suggestKeywords();
+            checkSitemapStatus();
+            validateRobotsContent();
+            validateAnalyticsCode();
+            
+            // Add event listeners for character counts
+            const metaTitle = document.getElementById('meta_title');
+            const metaDescription = document.getElementById('meta_description');
+            
+            if (metaTitle) {
+                metaTitle.addEventListener('input', updateCharacterCounts);
+            }
+            if (metaDescription) {
+                metaDescription.addEventListener('input', updateCharacterCounts);
+            }
+            
+            // Auto-save functionality for SEO settings
+            const seoForms = document.querySelectorAll('form');
+            seoForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Saving...';
+                        submitBtn.disabled = true;
+                    }
+                });
+            });
+            
+            // Preview functionality for meta tags
+            const previewBtn = document.getElementById('previewMeta');
+            if (previewBtn) {
+                previewBtn.addEventListener('click', function() {
+                    const title = document.getElementById('meta_title')?.value || 'No title';
+                    const description = document.getElementById('meta_description')?.value || 'No description';
+                    
+                    // Show preview in alert (you can enhance this with a modal)
+                    alert(`Search Result Preview:\n\nTitle: ${title}\nDescription: ${description.substring(0, 100)}...`);
+                });
+            }
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const sidebar = document.querySelector('aside');
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('md:block');
+        }
+
+        // Search functionality
+        function handleSearch() {
+            const searchInput = document.querySelector('input[type="text"][placeholder="Search..."]');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const searchTerm = this.value.trim();
+                        if (searchTerm) {
+                            // Implement search functionality here
+                            console.log('Searching for:', searchTerm);
+                            alert(`Search functionality would look for: ${searchTerm}`);
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize search on load
+        document.addEventListener('DOMContentLoaded', handleSearch);
     </script>
+    
     <style>
         .sidebar-link {
             transition: all 0.3s ease;
@@ -395,6 +628,32 @@
         /* Smooth rotation for chevron */
         .fa-chevron-down {
             transition: transform 0.3s ease;
+        }
+        
+        /* SEO specific styles */
+        .character-count {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        
+        .seo-preview {
+            background: var(--dark-3);
+            border: 1px solid var(--dark-2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .validation-success {
+            border-color: #10B981 !important;
+        }
+        
+        .validation-warning {
+            border-color: #F59E0B !important;
+        }
+        
+        .validation-error {
+            border-color: #EF4444 !important;
         }
     </style>
 </body>

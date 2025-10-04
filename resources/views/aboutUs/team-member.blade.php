@@ -41,7 +41,7 @@
 
        
 <section class="mb-20">
-     <h2 class="text-3xl md:text-4xl font-bold text-center mb-10  orbitron  gradient-text">Our Creative Minds</h2>
+     <h2 class="text-3xl md:text-4xl font-bold text-center mb-20  orbitron  gradient-text">Behind the Desks, Ahead in Dedication</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
        
         <!-- Tech Team Member 1 -->

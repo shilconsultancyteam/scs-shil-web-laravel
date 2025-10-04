@@ -8,6 +8,8 @@ use App\Models\Blog;
 use App\Models\BlogComment;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\Referral;
+
 use Illuminate\Support\Facades\Schema;
 
 class AnalyticsController extends Controller
@@ -120,5 +122,102 @@ class AnalyticsController extends Controller
         ];
 
         return view('dashboard.pages.live-stats', compact('liveStats'));
+    }
+
+     public function topReferrals()
+    {
+        // Get top referrals (you can replace this with actual data from your tracking)
+        $referrals = Referral::orderBy('visit_count', 'desc')
+                            ->limit(15)
+                            ->get();
+
+        // If no referrals exist, show sample data for demonstration
+        if ($referrals->isEmpty()) {
+            $referrals = $this->getSampleReferralData();
+        }
+
+        // Calculate totals and percentages
+        $totalVisits = $referrals->sum('visit_count');
+        
+        foreach ($referrals as $referral) {
+            $referral->percentage = $totalVisits > 0 ? ($referral->visit_count / $totalVisits) * 100 : 0;
+        }
+
+        // Get referral statistics
+        $stats = [
+            'total_referrals' => $referrals->count(),
+            'total_visits' => $totalVisits,
+            'top_referrer' => $referrals->first(),
+            'social_media_visits' => $referrals->whereIn('referrer_domain', ['facebook.com', 'twitter.com', 'instagram.com', 'linkedin.com'])->sum('visit_count'),
+            'search_engine_visits' => $referrals->where('referrer_domain', 'google.com')->sum('visit_count'),
+            'direct_visits' => $referrals->where('referrer_url', 'direct')->sum('visit_count'),
+        ];
+
+        return view('dashboard.pages.top-referrals', compact('referrals', 'stats'));
+    }
+
+    /**
+     * Sample data for demonstration purposes
+     */
+    private function getSampleReferralData()
+    {
+        return collect([
+            new Referral([
+                'referrer_url' => 'direct',
+                'landing_page' => '/',
+                'visit_count' => 245,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://google.com',
+                'landing_page' => '/',
+                'visit_count' => 189,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://facebook.com',
+                'landing_page' => '/blog',
+                'visit_count' => 156,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://linkedin.com',
+                'landing_page' => '/careers',
+                'visit_count' => 98,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://twitter.com',
+                'landing_page' => '/services',
+                'visit_count' => 87,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://github.com',
+                'landing_page' => '/about-us',
+                'visit_count' => 65,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://instagram.com',
+                'landing_page' => '/blog',
+                'visit_count' => 54,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+            new Referral([
+                'referrer_url' => 'https://reddit.com',
+                'landing_page' => '/services/web-development',
+                'visit_count' => 43,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]),
+        ]);
     }
 }

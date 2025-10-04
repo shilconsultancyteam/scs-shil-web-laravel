@@ -19,7 +19,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\AnalyticsController;
-
+use App\Http\Controllers\SeoController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\CategoryController;
 
@@ -128,6 +128,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('/pages/live-stats', [AnalyticsController::class, 'liveStats'])
         ->name('analytics.live-stats');
+
+    Route::get('/pages/top-referrals', [AnalyticsController::class, 'topReferrals'])
+        ->name('analytics.top-referrals');
 });
 
 // Existing Blog Routes
@@ -144,3 +147,22 @@ Route::controller(AdminCommentController::class)->prefix('comments')->name('dash
 
 // ✅ FIX: Replaced manual route group with Route::resource to define edit, update, and destroy routes.
 Route::resource('categories', CategoryController::class)->names('dashboard.categories')->except(['create', 'show']);
+
+
+// SEO Routes
+Route::prefix('dashboard/seo')->name('dashboard.seo.')->group(function () {
+    Route::get('/meta-tags', [SeoController::class, 'metaTags'])->name('meta-tags');
+    Route::post('/meta-tags', [SeoController::class, 'updateMetaTags'])->name('meta-tags.update');
+    
+    Route::get('/analytics', [SeoController::class, 'analytics'])->name('analytics');
+    Route::post('/analytics', [SeoController::class, 'updateAnalytics'])->name('analytics.update');
+    
+    Route::get('/keywords', [SeoController::class, 'keywords'])->name('keywords');
+    Route::post('/keywords', [SeoController::class, 'updateKeywords'])->name('keywords.update');
+    
+    Route::get('/sitemap', [SeoController::class, 'sitemap'])->name('sitemap');
+    Route::post('/sitemap/generate', [SeoController::class, 'generateSitemap'])->name('sitemap.generate');
+    
+    Route::get('/robots', [SeoController::class, 'robots'])->name('robots');
+    Route::post('/robots', [SeoController::class, 'updateRobots'])->name('robots.update');
+});

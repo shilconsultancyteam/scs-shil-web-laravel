@@ -144,7 +144,7 @@
                                 <span>Popular Pages</span>
                             </a>
 
-                            <a href="#" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
+                            <a href="{{ route('analytics.live-stats') }}" class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm">
                                 <i class="fas fa-user-clock w-4 text-center mr-3"></i>
                                 <span>Live Stats</span>
                             </a>

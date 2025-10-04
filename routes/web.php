@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
@@ -19,8 +20,8 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\AnalyticsController;
 
-use App\Http\Controllers\Admin\AdminCommentController; 
-use App\Http\Controllers\Admin\CategoryController; 
+use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 
@@ -76,7 +77,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         return redirect()->route('access_control')->with('success', 'User deleted successfully!');
     })->name('users.destroy');
     Route::put('/users/{user}', function (Request $request, User $user) {
-        $validated = $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id, 'password' => 'nullable|string|min:8', 'role' => 'required|in:admin,manager,developer', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048']);
+        $validated = $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, 'password' => 'nullable|string|min:8', 'role' => 'required|in:admin,manager,developer', 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048']);
         if ($request->hasFile('image')) {
             if ($user->image) Storage::disk('public')->delete($user->image);
             $validated['image'] = $request->file('image')->store('users', 'public');
@@ -124,6 +125,9 @@ Route::post('/jobs/upload', [App\Http\Controllers\Admin\JobController::class, 'u
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/pages/popular_pages', [AnalyticsController::class, 'popularPages'])
         ->name('analytics.popular');
+
+    Route::get('/pages/live-stats', [AnalyticsController::class, 'liveStats'])
+        ->name('analytics.live-stats');
 });
 
 // Existing Blog Routes
@@ -133,11 +137,10 @@ Route::post('/blogs/upload', [AdminBlogController::class, 'upload'])->name('dash
 
 // NEW: Comment Routes (View Comments & Delete Comments)
 Route::controller(AdminCommentController::class)->prefix('comments')->name('dashboard.comments.')->group(function () {
-    Route::get('/', 'index')->name('index'); 
+    Route::get('/', 'index')->name('index');
     // Uses route model binding: /dashboard/comments/{blog_comment_id}
-    Route::delete('/{comment}', 'destroy')->name('destroy'); 
+    Route::delete('/{comment}', 'destroy')->name('destroy');
 });
 
 // ✅ FIX: Replaced manual route group with Route::resource to define edit, update, and destroy routes.
 Route::resource('categories', CategoryController::class)->names('dashboard.categories')->except(['create', 'show']);
-

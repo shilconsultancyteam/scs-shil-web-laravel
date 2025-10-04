@@ -45,8 +45,11 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
-    {
+   public function store(Request $request)
+{
+    \Log::info('Blog creation started', ['request_data' => $request->except('content')]);
+    
+    try {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
@@ -56,11 +59,12 @@ class BlogController extends Controller
             'content' => 'required|string',
         ]);
 
+        \Log::info('Validation passed');
+
         $slug = Str::slug($request->title);
         $count = 1;
         $originalSlug = $slug;
 
-        // Ensure the slug is unique
         while (Blog::where('slug', $slug)->exists()) {
             $slug = $originalSlug . '-' . $count;
             $count++;
@@ -69,9 +73,16 @@ class BlogController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('blogs', 'public');
+            \Log::info('Image stored', ['path' => $imagePath]);
         }
 
-        Blog::create([
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            \Log::error('User not authenticated');
+            return back()->with('error', 'You must be logged in to create a blog.');
+        }
+
+        $blog = Blog::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
             'subtitle' => $request->subtitle,
@@ -82,8 +93,18 @@ class BlogController extends Controller
             'content' => $request->content,
         ]);
 
+        \Log::info('Blog created successfully', ['blog_id' => $blog->id]);
+
         return redirect()->route('dashboard.blogs.index')->with('success', 'Blog post created successfully!');
+
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        \Log::error('Validation failed', ['errors' => $e->errors()]);
+        return back()->withErrors($e->errors())->withInput();
+    } catch (\Exception $e) {
+        \Log::error('Blog creation failed', ['error' => $e->getMessage()]);
+        return back()->with('error', 'Failed to create blog: ' . $e->getMessage())->withInput();
     }
+}
 
     /**
      * Show the form for editing the specified resource.

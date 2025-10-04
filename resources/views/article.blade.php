@@ -238,61 +238,226 @@
     </main>
 
     <style>
-        .card-bg {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .card-bg {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-        .blog-placeholder-img {
-            /* background: linear-gradient(135deg, #6e45e2, #88d3ce); */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
+    .blog-placeholder-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
 
-        .prose-custom {
-            color: #d1d5db;
-        }
+    .author-img {
+        background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    }
 
-        .prose-custom h2 {
-            color: #ffffff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 0.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
+    .gradient-text {
+        background: linear-gradient(to right, #00bfff, #007bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-        .prose-custom h3 {
-            color: #ffffff;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
+    /* Enhanced Prose Styles for CKEditor Content */
+    .prose-custom {
+        color: #d1d5db;
+        line-height: 1.7;
+        font-size: 16px;
+    }
 
-        .prose-custom p {
-            margin-bottom: 1rem;
-        }
+    /* Headings */
+    .prose-custom h1,
+    .prose-custom h2,
+    .prose-custom h3,
+    .prose-custom h4,
+    .prose-custom h5,
+    .prose-custom h6 {
+        color: #ffffff;
+        font-weight: bold;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
 
-        .prose-custom ul,
-        .prose-custom ol {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
+    .prose-custom h1 {
+        font-size: 2.25rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.5rem;
+    }
 
-        .prose-custom li {
-            margin-bottom: 0.5rem;
-        }
+    .prose-custom h2 {
+        font-size: 1.875rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.5rem;
+    }
 
-        .author-img {
-            background: linear-gradient(135deg, #6e45e2, #88d3ce);
-        }
+    .prose-custom h3 {
+        font-size: 1.5rem;
+    }
 
-        .gradient-text {
-            background: linear-gradient(to right, #00bfff, #007bff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-    </style>
+    .prose-custom h4 {
+        font-size: 1.25rem;
+    }
+
+    /* Paragraphs */
+    .prose-custom p {
+        margin-bottom: 1.25rem;
+        color: #d1d5db;
+    }
+
+    /* Text Formatting */
+    .prose-custom strong,
+    .prose-custom b {
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .prose-custom em,
+    .prose-custom i {
+        font-style: italic;
+        color: #d1d5db;
+    }
+
+    .prose-custom u {
+        text-decoration: underline;
+    }
+
+    .prose-custom s,
+    .prose-custom del {
+        text-decoration: line-through;
+    }
+
+    /* Lists */
+    .prose-custom ul,
+    .prose-custom ol {
+        margin-bottom: 1.25rem;
+        padding-left: 2rem;
+        color: #d1d5db;
+    }
+
+    .prose-custom ul {
+        list-style-type: disc;
+    }
+
+    .prose-custom ol {
+        list-style-type: decimal;
+    }
+
+    .prose-custom li {
+        margin-bottom: 0.5rem;
+        color: #d1d5db;
+    }
+
+    .prose-custom li::marker {
+        color: #60a5fa;
+    }
+
+    /* Blockquotes */
+    .prose-custom blockquote {
+        border-left: 4px solid #6e45e2;
+        padding-left: 1.5rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #9ca3af;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Links */
+    .prose-custom a {
+        color: #60a5fa;
+        text-decoration: underline;
+    }
+
+    .prose-custom a:hover {
+        color: #93c5fd;
+    }
+
+    /* Tables */
+    .prose-custom table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .prose-custom th,
+    .prose-custom td {
+        border: 1px solid #4b5563;
+        padding: 0.75rem;
+        text-align: left;
+        color: #d1d5db;
+    }
+
+    .prose-custom th {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    /* Images */
+    .prose-custom img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    /* Code and Pre */
+    .prose-custom code {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        color: #fbbf24;
+        font-family: 'Courier New', monospace;
+    }
+
+    .prose-custom pre {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+
+    .prose-custom pre code {
+        background: none;
+        padding: 0;
+        color: #d1d5db;
+    }
+
+    /* Text Colors from CKEditor */
+    .prose-custom span[style*="color"] {
+        /* Allow CKEditor text colors to show */
+    }
+
+    .prose-custom span[style*="background-color"] {
+        /* Allow CKEditor background colors to show */
+        padding: 0.1em 0.2em;
+        border-radius: 0.2em;
+    }
+
+    /* Alignment */
+    .prose-custom .text-left { text-align: left; }
+    .prose-custom .text-center { text-align: center; }
+    .prose-custom .text-right { text-align: right; }
+    .prose-custom .text-justify { text-align: justify; }
+
+    /* Indentation */
+    .prose-custom .ck-indent {
+        padding-left: 2rem;
+    }
+
+    /* Specific styles for common CKEditor classes */
+    .prose-custom .text-tiny { font-size: 0.7em; }
+    .prose-custom .text-small { font-size: 0.85em; }
+    .prose-custom .text-big { font-size: 1.4em; }
+    .prose-custom .text-huge { font-size: 1.8em; }
+</style>
 @endsection

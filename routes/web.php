@@ -22,6 +22,8 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 
@@ -119,7 +121,11 @@ Route::view('/cookie-policy', 'cookie-policy')->name('cookie.policy');
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::post('/jobs/upload', [App\Http\Controllers\Admin\JobController::class, 'upload'])->name('dashboard.jobs.upload');
-
+// Password Reset Routes
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 //dashboard pages section
 
 Route::prefix('dashboard')->middleware(['auth'])->group(function () {

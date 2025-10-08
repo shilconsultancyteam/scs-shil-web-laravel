@@ -118,7 +118,7 @@
 
             <!-- Links -->
             <div class="flex flex-col items-center gap-2 text-sm mt-4">
-                <a href="#" class="text-primary hover:underline font-medium">Forgot Password?</a>
+                <a href="{{ route('password.request') }}" class="text-primary hover:underline font-medium">Forgot Password?</a>
                 <a href="{{ route('register') }}" class="text-secondary hover:underline font-medium">Create New Account</a>
             </div>
         </form>

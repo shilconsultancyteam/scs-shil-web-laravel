@@ -10,16 +10,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Blog extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'user_id',
         'title',
         'subtitle',
         'slug',
-        'image',
         'category',
         'subcategory',
+        'image',
         'content',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'primary_keywords',
+        'secondary_keywords'
     ];
 
     public function author(): BelongsTo

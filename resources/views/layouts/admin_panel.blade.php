@@ -255,6 +255,16 @@
                                 <i class="fas fa-tags w-4 text-center mr-3"></i>
                                 <span>Meta Tags</span>
                             </a>
+                            <a href="{{ route('dashboard.seo.blog-meta-tags') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.meta-tags') ? 'active' : '' }}">
+                                <i class="fas fa-tags w-4 text-center mr-3"></i>
+                                <span>Blog Meta Tags</span>
+                            </a>
+                            <a href="{{ route('dashboard.seo.blog-keywords') }}"
+                                class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.meta-tags') ? 'active' : '' }}">
+                                <i class="fas fa-tags w-4 text-center mr-3"></i>
+                                <span>Blog Keywords</span>
+                            </a>
                             <a href="{{ route('dashboard.seo.analytics') }}"
                                 class="sidebar-link flex items-center px-4 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard.seo.analytics') ? 'active' : '' }}">
                                 <i class="fas fa-chart-bar w-4 text-center mr-3"></i>

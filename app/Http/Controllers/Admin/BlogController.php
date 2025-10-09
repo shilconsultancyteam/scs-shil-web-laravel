@@ -45,7 +45,7 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-   public function store(Request $request)
+ public function store(Request $request)
 {
     \Log::info('Blog creation started', ['request_data' => $request->except('content')]);
     
@@ -57,6 +57,11 @@ class BlogController extends Controller
             'subcategory' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'content' => 'required|string',
+            'meta_title' => 'nullable|string|max:60',
+            'meta_description' => 'nullable|string|max:160',
+            'meta_keywords' => 'nullable|string',
+            'primary_keywords' => 'nullable|string',
+            'secondary_keywords' => 'nullable|string',
         ]);
 
         \Log::info('Validation passed');
@@ -76,7 +81,6 @@ class BlogController extends Controller
             \Log::info('Image stored', ['path' => $imagePath]);
         }
 
-        // Check if user is authenticated
         if (!auth()->check()) {
             \Log::error('User not authenticated');
             return back()->with('error', 'You must be logged in to create a blog.');
@@ -91,6 +95,11 @@ class BlogController extends Controller
             'subcategory' => $request->subcategory,
             'image' => $imagePath,
             'content' => $request->content,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords,
+            'primary_keywords' => $request->primary_keywords,
+            'secondary_keywords' => $request->secondary_keywords,
         ]);
 
         \Log::info('Blog created successfully', ['blog_id' => $blog->id]);
@@ -105,6 +114,7 @@ class BlogController extends Controller
         return back()->with('error', 'Failed to create blog: ' . $e->getMessage())->withInput();
     }
 }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -128,46 +138,55 @@ class BlogController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Blog $blog)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-            'category' => 'required|string|max:255',
-            'subcategory' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'content' => 'required|string',
-        ]);
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'subtitle' => 'nullable|string|max:255',
+        'category' => 'required|string|max:255',
+        'subcategory' => 'nullable|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'content' => 'required|string',
+        'meta_title' => 'nullable|string|max:60',
+        'meta_description' => 'nullable|string|max:160',
+        'meta_keywords' => 'nullable|string',
+        'primary_keywords' => 'nullable|string',
+        'secondary_keywords' => 'nullable|string',
+    ]);
 
-        $imagePath = $blog->image;
-        if ($request->hasFile('image')) {
-            if ($blog->image) {
-                Storage::disk('public')->delete($blog->image);
-            }
-            $imagePath = $request->file('image')->store('blogs', 'public');
+    $imagePath = $blog->image;
+    if ($request->hasFile('image')) {
+        if ($blog->image) {
+            Storage::disk('public')->delete($blog->image);
         }
-
-        $slug = Str::slug($request->title);
-        $count = 1;
-        $originalSlug = $slug;
-
-        // Ensure the new slug is unique and doesn't conflict with other blogs
-        while (Blog::where('slug', $slug)->where('id', '!=', $blog->id)->exists()) {
-            $slug = $originalSlug . '-' . $count;
-            $count++;
-        }
-
-        $blog->update([
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'slug' => $slug,
-            'category' => $request->category,
-            'subcategory' => $request->subcategory,
-            'image' => $imagePath,
-            'content' => $request->content,
-        ]);
-
-        return redirect()->route('dashboard.blogs.index')->with('success', 'Blog post updated successfully!');
+        $imagePath = $request->file('image')->store('blogs', 'public');
     }
+
+    $slug = Str::slug($request->title);
+    $count = 1;
+    $originalSlug = $slug;
+
+    while (Blog::where('slug', $slug)->where('id', '!=', $blog->id)->exists()) {
+        $slug = $originalSlug . '-' . $count;
+        $count++;
+    }
+
+    $blog->update([
+        'title' => $request->title,
+        'subtitle' => $request->subtitle,
+        'slug' => $slug,
+        'category' => $request->category,
+        'subcategory' => $request->subcategory,
+        'image' => $imagePath,
+        'content' => $request->content,
+        'meta_title' => $request->meta_title,
+        'meta_description' => $request->meta_description,
+        'meta_keywords' => $request->meta_keywords,
+        'primary_keywords' => $request->primary_keywords,
+        'secondary_keywords' => $request->secondary_keywords,
+    ]);
+
+    return redirect()->route('dashboard.blogs.index')->with('success', 'Blog post updated successfully!');
+}
 
     // ... (destroy and generateSlugs methods remain the same) ...
 

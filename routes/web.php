@@ -171,4 +171,11 @@ Route::prefix('dashboard/seo')->name('dashboard.seo.')->group(function () {
     
     Route::get('/robots', [SeoController::class, 'robots'])->name('robots');
     Route::post('/robots', [SeoController::class, 'updateRobots'])->name('robots.update');
+
+     // NEW: Blog-specific SEO routes
+    Route::get('/blog-meta-tags', [SeoController::class, 'blogMetaTags'])->name('blog-meta-tags');
+    Route::get('/blog-keywords', [SeoController::class, 'blogKeywords'])->name('blog-keywords');
+    Route::get('/blogs/{blog}/meta', [SeoController::class, 'getBlogMeta'])->name('blogs.get-meta');
+    Route::post('/blogs/{blog}/meta-tags', [SeoController::class, 'updateBlogMetaTags'])->name('blogs.update-meta-tags');
+    Route::post('/blogs/{blog}/keywords', [SeoController::class, 'updateBlogKeywords'])->name('blogs.update-keywords');
 });
